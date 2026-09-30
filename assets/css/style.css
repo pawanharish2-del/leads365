@@ -1,7 +1,7 @@
 /* ==========================================================================
    LEADS365.IN — GLOBAL CSS DESIGN SYSTEM & STYLESHEET
    Brand: Leads365 | Product by Chonexa Technologies
-   Fully Responsive for All Devices (Mobile, Tablet, Laptop, Desktop)
+   Fully Responsive for All Devices (Zero Horizontal Scroll Guarantee)
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
@@ -18,7 +18,7 @@
   --leads-cyan: #00C8EA;
   --leads-cyan-dark: #0077B6;
 
-  /* UI Neutral & Text Colors (Consolidated Design Tokens) */
+  /* UI Neutral & Text Colors */
   --bg-light: #F8F7FC;
   --bg-surface: #FFFFFF;
   --bg-subtle: #F1F4F9;
@@ -86,12 +86,13 @@
 }
 
 /* --------------------------------------------------------------------------
-   2. GLOBAL RESETS & BASE STYLES
+   2. GLOBAL RESETS & ANTI-OVERFLOW BASE STYLES
    -------------------------------------------------------------------------- */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  max-width: 100%;
 }
 
 html {
@@ -99,6 +100,9 @@ html {
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -107,8 +111,10 @@ body {
   color: var(--text-body);
   background-color: var(--bg-surface);
   line-height: 1.65;
+  width: 100%;
+  max-width: 100%;
   overflow-x: hidden;
-  max-width: 100vw;
+  position: relative;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -118,7 +124,7 @@ body {
   color: var(--text-white);
 }
 
-img, svg {
+img, svg, video, iframe, canvas {
   display: block;
   max-width: 100%;
   height: auto;
@@ -133,6 +139,7 @@ a {
 button, input, select, textarea {
   font-family: inherit;
   font-size: inherit;
+  max-width: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -142,6 +149,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.25;
   letter-spacing: -0.02em;
   word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 p {
@@ -152,6 +160,23 @@ p {
 
 ul, ol {
   list-style: none;
+}
+
+/* Prevent flexbox children from overflowing their parents */
+.container,
+.hero-grid,
+.hero-cta-group,
+.hero-trust-row,
+.mockup-header,
+.mockup-body,
+.mockup-stream-bar,
+.stream-item,
+.stream-item-left,
+.top-bar-inner,
+.top-bar-contact,
+.footer-grid,
+[class*="grid"] {
+  min-width: 0;
 }
 
 /* --------------------------------------------------------------------------
@@ -171,13 +196,17 @@ ul, ol {
 }
 
 .section-padding {
-  padding-top: clamp(3rem, 6vw, 5rem);
-  padding-bottom: clamp(3rem, 6vw, 5rem);
+  padding-top: clamp(2.75rem, 5vw, 5rem);
+  padding-bottom: clamp(2.75rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
 }
 
 .section-padding-sm {
-  padding-top: clamp(2.25rem, 4vw, 3.5rem);
-  padding-bottom: clamp(2.25rem, 4vw, 3.5rem);
+  padding-top: clamp(2rem, 3.5vw, 3.5rem);
+  padding-bottom: clamp(2rem, 3.5vw, 3.5rem);
+  position: relative;
+  overflow: hidden;
 }
 
 .bg-light {
@@ -350,7 +379,7 @@ ul, ol {
   font-family: var(--font-body);
   font-weight: 700;
   font-size: var(--font-size-base);
-  padding: 0.8rem 1.6rem;
+  padding: 0.8rem 1.5rem;
   border-radius: var(--radius-btn);
   border: 2px solid transparent;
   cursor: pointer;
@@ -362,9 +391,9 @@ ul, ol {
 }
 
 .btn-lg {
-  padding: 0.95rem 2rem;
+  padding: 0.9rem 1.85rem;
   font-size: var(--font-size-md);
-  min-height: 52px;
+  min-height: 50px;
 }
 
 .btn-sm {
@@ -426,21 +455,53 @@ ul, ol {
 }
 
 /* --------------------------------------------------------------------------
-   6. CARDS & CONTAINERS
+   6. CARDS & DEMO CONTAINERS
    -------------------------------------------------------------------------- */
 .card {
   background: var(--bg-surface);
   border-radius: var(--radius-card);
   border: 1px solid var(--border-light);
   box-shadow: var(--shadow-card);
-  padding: clamp(1.25rem, 3vw, 2rem);
+  padding: clamp(1.25rem, 3.5vw, 2rem);
   transition: all var(--transition-normal);
+  max-width: 100%;
 }
 
 .card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-card-hover);
   border-color: rgba(155, 38, 255, 0.3);
+}
+
+.feature-demo-card {
+  background: var(--bg-light);
+  border: 2px solid var(--border-light);
+  border-radius: var(--radius-card);
+  padding: clamp(1.25rem, 3.5vw, 2rem);
+  box-shadow: var(--shadow-sm);
+  max-width: 100%;
+}
+
+.cta-banner-card {
+  background: linear-gradient(135deg, #001247 0%, #001C71 60%, #5900D9 100%);
+  color: var(--text-white);
+  padding: clamp(2rem, 5vw, 3.5rem) clamp(1.25rem, 4vw, 2.5rem);
+  text-align: center;
+  border-radius: var(--radius-card-lg);
+  max-width: 100%;
+}
+
+.cta-banner-card h2 {
+  color: var(--text-white);
+  font-size: clamp(1.5rem, 3.5vw + 0.5rem, 2.4rem);
+  margin-bottom: 1rem;
+}
+
+.cta-banner-card p {
+  color: var(--text-white-subtle);
+  max-width: 650px;
+  margin: 0 auto 2rem;
+  font-size: var(--font-size-base);
 }
 
 .card-title {
@@ -518,6 +579,8 @@ ul, ol {
   font-size: var(--font-size-xs);
   padding: 0.6rem 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  overflow: hidden;
 }
 
 .top-bar-inner {
@@ -564,6 +627,7 @@ ul, ol {
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-light);
   transition: box-shadow var(--transition-fast);
+  width: 100%;
 }
 
 .site-header.scrolled {
@@ -585,7 +649,7 @@ ul, ol {
 }
 
 .brand-logo-img {
-  height: 48px;
+  height: 46px;
   width: auto;
   max-width: 180px;
   object-fit: contain;
@@ -702,7 +766,7 @@ ul, ol {
 .page-header-banner {
   background: var(--gradient-hero);
   color: var(--text-white);
-  padding: clamp(3rem, 6vw, 4.5rem) 0 clamp(2.5rem, 5vw, 4rem);
+  padding: clamp(2.75rem, 5vw, 4.5rem) 0 clamp(2.25rem, 4vw, 4rem);
   position: relative;
   overflow: hidden;
 }
@@ -712,8 +776,9 @@ ul, ol {
   position: absolute;
   top: -50%;
   right: -20%;
-  width: 600px;
-  height: 600px;
+  width: 500px;
+  height: 500px;
+  max-width: 100vw;
   background: radial-gradient(circle, rgba(155, 38, 255, 0.25) 0%, transparent 70%);
   pointer-events: none;
 }
@@ -756,7 +821,7 @@ ul, ol {
    9. HOME HERO & INTERACTIVE CRM SIMULATION
    -------------------------------------------------------------------------- */
 .hero-section {
-  padding: clamp(3rem, 5vw, 4.5rem) 0 clamp(3.5rem, 6vw, 5.5rem);
+  padding: clamp(2.75rem, 5vw, 4.5rem) 0 clamp(3rem, 5vw, 5.5rem);
   position: relative;
   overflow: hidden;
 }
@@ -823,6 +888,7 @@ ul, ol {
   box-shadow: 0 25px 50px -12px rgba(0, 28, 113, 0.25);
   overflow: hidden;
   width: 100%;
+  max-width: 100%;
 }
 
 .mockup-header {
@@ -894,6 +960,8 @@ ul, ol {
 .mockup-body {
   padding: clamp(1rem, 2.5vw, 1.5rem);
   background: var(--bg-light);
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .mockup-kpi-row {
@@ -908,12 +976,16 @@ ul, ol {
   padding: 0.85rem;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border-light);
+  min-width: 0;
 }
 
 .kpi-label {
   font-size: var(--font-size-xs);
   font-weight: 700;
   color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .kpi-val-row {
@@ -921,6 +993,7 @@ ul, ol {
   align-items: baseline;
   justify-content: space-between;
   margin-top: 0.35rem;
+  gap: 0.25rem;
 }
 
 .kpi-number {
@@ -935,6 +1008,7 @@ ul, ol {
   font-weight: 700;
   padding: 0.15rem 0.45rem;
   border-radius: var(--radius-xs);
+  white-space: nowrap;
 }
 
 .tag-green { background: var(--status-success-bg); color: var(--status-success); }
@@ -1011,7 +1085,7 @@ ul, ol {
   gap: 0.75rem;
   box-shadow: var(--shadow-xs);
   transition: transform var(--transition-fast);
-  flex-wrap: wrap;
+  min-width: 0;
 }
 
 .stream-item-left {
@@ -1019,6 +1093,7 @@ ul, ol {
   align-items: center;
   gap: 0.75rem;
   min-width: 0;
+  overflow: hidden;
 }
 
 .stream-source-badge {
@@ -1043,6 +1118,9 @@ ul, ol {
   font-size: var(--font-size-sm);
   font-weight: 700;
   color: var(--leads-navy);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .stream-item-sub {
@@ -1059,6 +1137,7 @@ ul, ol {
   border: none;
   cursor: pointer;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .mockup-footer-integrations {
@@ -1096,6 +1175,8 @@ ul, ol {
   padding: clamp(2rem, 4vw, 2.75rem) 0;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  overflow: hidden;
 }
 
 .metrics-grid {
@@ -1148,6 +1229,8 @@ ul, ol {
   padding: clamp(1.5rem, 3.5vw, 2.5rem);
   box-shadow: var(--shadow-sm);
   position: relative;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .card-problem {
@@ -1273,6 +1356,7 @@ ul, ol {
   position: relative;
   box-shadow: var(--shadow-sm);
   transition: all var(--transition-normal);
+  max-width: 100%;
 }
 
 .step-card:hover {
@@ -1335,6 +1419,7 @@ ul, ol {
   text-align: center;
   box-shadow: var(--shadow-sm);
   transition: all var(--transition-fast);
+  max-width: 100%;
 }
 
 .industry-card:hover {
@@ -1388,6 +1473,7 @@ ul, ol {
   justify-content: space-between;
   position: relative;
   transition: transform var(--transition-normal);
+  max-width: 100%;
 }
 
 .pricing-card:hover {
@@ -1487,11 +1573,12 @@ ul, ol {
   border-radius: var(--radius-card);
   border: 1px solid var(--border-light);
   box-shadow: var(--shadow-sm);
+  max-width: 100%;
 }
 
 .pricing-table {
   width: 100%;
-  min-width: 650px;
+  min-width: 620px;
   border-collapse: collapse;
   text-align: left;
   font-size: var(--font-size-sm);
@@ -1499,7 +1586,7 @@ ul, ol {
 
 .pricing-table th,
 .pricing-table td {
-  padding: 1.1rem 1.5rem;
+  padding: 1.1rem 1.25rem;
   border-bottom: 1px solid var(--border-light);
 }
 
@@ -1549,6 +1636,7 @@ ul, ol {
   background: var(--bg-surface);
   overflow: hidden;
   transition: border-color var(--transition-fast);
+  max-width: 100%;
 }
 
 .faq-item.active {
@@ -1620,6 +1708,7 @@ ul, ol {
   border: 1px solid var(--border-light);
   box-shadow: var(--shadow-sm);
   padding: clamp(1.5rem, 3vw, 2.25rem);
+  max-width: 100%;
 }
 
 .contact-detail-row {
@@ -1671,6 +1760,7 @@ ul, ol {
   border: 1px solid var(--border-light);
   box-shadow: var(--shadow-card);
   padding: clamp(1.5rem, 3.5vw, 2.5rem);
+  max-width: 100%;
 }
 
 .form-group {
@@ -1697,7 +1787,7 @@ ul, ol {
   padding: 0.8rem 1rem;
   border-radius: var(--radius-btn);
   border: 1px solid var(--border-medium);
-  font-size: var(--font-size-base); /* 16px base prevents iOS Safari unwanted zoom on input focus */
+  font-size: var(--font-size-base);
   color: var(--text-dark);
   background: var(--bg-surface);
   transition: all var(--transition-fast);
@@ -1742,6 +1832,8 @@ textarea.form-control {
   padding-top: clamp(3rem, 6vw, 5rem);
   padding-bottom: 2.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  overflow: hidden;
 }
 
 .footer-grid {
@@ -1853,13 +1945,13 @@ textarea.form-control {
    -------------------------------------------------------------------------- */
 .floating-whatsapp-btn {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
+  bottom: 20px;
+  right: 20px;
   z-index: 999;
   background: #25D366;
   color: var(--text-white);
-  width: 58px;
-  height: 58px;
+  width: 54px;
+  height: 54px;
   border-radius: var(--radius-full);
   display: flex;
   align-items: center;
@@ -1876,14 +1968,14 @@ textarea.form-control {
 }
 
 .floating-whatsapp-btn svg {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   fill: var(--text-white);
 }
 
 .floating-tooltip {
   position: absolute;
-  right: 68px;
+  right: 64px;
   background: #1E293B;
   color: var(--text-white);
   font-size: var(--font-size-xs);
@@ -2035,6 +2127,7 @@ textarea.form-control {
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
   position: relative;
   overflow: hidden;
+  max-width: 100%;
 }
 
 .ai-overview-card::before {
@@ -2056,6 +2149,7 @@ textarea.form-control {
   transition: all var(--transition-normal);
   position: relative;
   overflow: hidden;
+  max-width: 100%;
 }
 
 .ai-feature-card::before {
@@ -2121,14 +2215,17 @@ textarea.form-control {
 .waveform-container {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 3px;
   height: 48px;
   padding: 0.5rem 0;
   width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .waveform-bar {
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 0;
   background: rgba(255, 255, 255, 0.3);
   border-radius: var(--radius-full);
   height: 20%;
@@ -2180,6 +2277,8 @@ textarea.form-control {
   color: var(--text-white-subtle);
   line-height: 1.6;
   font-family: var(--font-body);
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .speaker-tag {
@@ -2200,6 +2299,7 @@ textarea.form-control {
   border: 1px solid rgba(255, 255, 255, 0.08);
   margin-bottom: 0.65rem;
   transition: all var(--transition-fast);
+  min-width: 0;
 }
 
 .ai-summary-bullet:hover {
@@ -2227,7 +2327,7 @@ textarea.form-control {
    21. FULLY RESPONSIVE MEDIA QUERIES (DESKTOP -> TABLET -> MOBILE)
    ========================================================================== */
 
-/* --- Large Desktops & Laptops (1025px - 1280px) --- */
+/* --- Large Desktops & Laptops (1025px - 1200px) --- */
 @media (max-width: 1200px) {
   .nav-links {
     gap: 1.25rem;
@@ -2329,6 +2429,10 @@ textarea.form-control {
   .top-bar-inner {
     justify-content: center;
   }
+  .top-bar-contact {
+    justify-content: center;
+    gap: 0.85rem;
+  }
 
   /* Hero Section */
   .hero-cta-group {
@@ -2372,7 +2476,16 @@ textarea.form-control {
     padding-bottom: 0;
   }
 
-  /* Mockup KPI Stack */
+  /* Mockup Header & KPI Stack */
+  .mockup-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .mockup-title {
+    margin-left: 0.25rem;
+    white-space: normal;
+  }
   .mockup-kpi-row {
     grid-template-columns: 1fr;
     gap: 0.5rem;
@@ -2380,17 +2493,17 @@ textarea.form-control {
 
   /* Floating WhatsApp Button */
   .floating-whatsapp-btn {
-    bottom: 20px;
-    right: 20px;
-    width: 52px;
-    height: 52px;
+    bottom: 16px;
+    right: 16px;
+    width: 50px;
+    height: 50px;
   }
   .floating-whatsapp-btn svg {
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
   }
   .floating-tooltip {
-    display: none; /* Hide hover tooltip on touch screens */
+    display: none !important;
   }
 
   /* Grid 5 for Industries */
@@ -2417,12 +2530,23 @@ textarea.form-control {
   .stream-tag-btn {
     align-self: flex-start;
   }
+
+  /* AI Section Controls wrap */
+  .ai-overview-card div[style*="justify-content: space-between"] {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .ai-overview-card button.btn {
+    width: 100%;
+  }
 }
 
 /* --- Extra Small Phones (<= 400px, e.g. iPhone SE) --- */
 @media (max-width: 400px) {
   .brand-logo-img {
     height: 38px;
+    max-width: 140px;
   }
   .navbar {
     height: 64px;
@@ -2432,10 +2556,15 @@ textarea.form-control {
     max-height: calc(100vh - 64px);
   }
   .top-bar-contact {
-    gap: 0.75rem;
+    gap: 0.5rem;
     font-size: 0.72rem;
+    flex-direction: column;
+  }
+  .top-bar-contact > span {
+    display: none;
   }
   .btn {
-    padding: 0.7rem 1.2rem;
+    padding: 0.65rem 1rem;
+    font-size: 0.9rem;
   }
 }
