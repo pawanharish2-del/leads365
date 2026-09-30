@@ -1944,7 +1944,7 @@ textarea.form-control {
    18. FLOATING WHATSAPP BUTTON
    -------------------------------------------------------------------------- */
 /* --------------------------------------------------------------------------
-   18. FLOATING WHATSAPP BUTTON (CLEAN & HIGH-DEFINITION)
+   18. FLOATING ACTION BUTTONS (WHATSAPP & QUICK CALL WITH RING ANIMATION)
    -------------------------------------------------------------------------- */
 .floating-whatsapp-btn {
   position: fixed;
@@ -2006,6 +2006,89 @@ textarea.form-control {
   100% { transform: scale(1.55); opacity: 0; }
 }
 
+/* --- Floating Quick Call Button with Ringing Animation --- */
+.floating-call-btn {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  touch-action: manipulation;
+}
+
+.call-icon-wrap {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #001C71 0%, #5900D9 100%);
+  border: 2px solid rgba(0, 200, 234, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px -4px rgba(0, 200, 234, 0.5), 0 4px 12px -2px rgba(0, 0, 0, 0.3);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+.floating-call-btn:hover .call-icon-wrap {
+  transform: scale(1.1) translateY(-2px);
+  border-color: #00E5FF;
+  box-shadow: 0 14px 32px -4px rgba(0, 229, 255, 0.7), 0 6px 14px -2px rgba(0, 0, 0, 0.35);
+}
+
+.call-icon-wrap svg,
+.call-sign-anim svg,
+.top-bar-contact svg,
+.btn svg[data-icon="phone"] {
+  animation: phone-ring 3.2s infinite ease-in-out;
+  transform-origin: 50% 50%;
+}
+
+.call-icon-wrap svg {
+  width: 28px;
+  height: 28px;
+  display: block;
+  filter: drop-shadow(0 0 6px rgba(0, 229, 255, 0.8));
+}
+
+/* Glowing background pulse ring for call button */
+.call-btn-pulse {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #00C8EA;
+  opacity: 0.6;
+  z-index: 1;
+  animation: call-pulse 2.4s infinite cubic-bezier(0.25, 0, 0, 1) 0.6s;
+  pointer-events: none;
+}
+
+@keyframes call-pulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  70% { transform: scale(1.55); opacity: 0; }
+  100% { transform: scale(1.55); opacity: 0; }
+}
+
+/* Authentic Phone Ring Vibration Keyframe */
+@keyframes phone-ring {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  4% { transform: rotate(14deg) scale(1.1); }
+  8% { transform: rotate(-12deg) scale(1.1); }
+  12% { transform: rotate(14deg) scale(1.1); }
+  16% { transform: rotate(-10deg) scale(1.1); }
+  20% { transform: rotate(8deg) scale(1.05); }
+  24% { transform: rotate(0deg) scale(1); }
+  70% { transform: rotate(0deg) scale(1); }
+}
+
 @media (max-width: 640px) {
   .floating-whatsapp-btn {
     bottom: 18px;
@@ -2020,6 +2103,23 @@ textarea.form-control {
     height: 28px;
   }
   .whatsapp-btn-pulse {
+    width: 52px;
+    height: 52px;
+  }
+
+  .floating-call-btn {
+    bottom: 18px;
+    left: 18px;
+  }
+  .call-icon-wrap {
+    width: 52px;
+    height: 52px;
+  }
+  .call-icon-wrap svg {
+    width: 26px;
+    height: 26px;
+  }
+  .call-btn-pulse {
     width: 52px;
     height: 52px;
   }
@@ -2643,16 +2743,24 @@ textarea.form-control {
     gap: 0.5rem;
   }
 
-  /* Floating WhatsApp Button */
+  /* Floating WhatsApp & Call Buttons */
   .floating-whatsapp-btn {
     bottom: 16px;
     right: 16px;
+  }
+  .floating-call-btn {
+    bottom: 16px;
+    left: 16px;
+  }
+  .whatsapp-icon-wrap,
+  .call-icon-wrap {
     width: 50px;
     height: 50px;
   }
-  .floating-whatsapp-btn svg {
-    width: 26px;
-    height: 26px;
+  .whatsapp-icon-wrap svg,
+  .call-icon-wrap svg {
+    width: 24px;
+    height: 24px;
   }
   .floating-tooltip {
     display: none !important;
