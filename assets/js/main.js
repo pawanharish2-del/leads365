@@ -1,50 +1,147 @@
 /**
  * LEADS365.IN — Shared Global JavaScript
  * Product by Chonexa Technologies
+ * Handles Responsive Navigation, Scroll Reveals, Animated Counters, Modals, FAQs, Live Stream & AI Demo
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Sticky Header Scroll Effect
   const siteHeader = document.getElementById('site-header');
   if (siteHeader) {
-    window.addEventListener('scroll', () => {
+    const handleScroll = () => {
       if (window.scrollY > 20) {
         siteHeader.classList.add('scrolled');
       } else {
         siteHeader.classList.remove('scrolled');
       }
-    });
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
   }
 
-  // 2. Active Nav Link Highlighter
+  // 2. Active Nav Link Highlighter (Supports clean URLs & .html fallback)
   highlightActiveNavLink();
 
-  // 3. Pre-fill Plan in Contact Form if passed via URL param
+  // 3. Scroll Reveal Animation Engine (IntersectionObserver)
+  initScrollAnimations();
+
+  // 4. Animated Number Counters on Scroll
+  initAnimatedCounters();
+
+  // 5. Pre-fill Plan in Contact Form if passed via URL param
   handleUrlPlanParam();
 });
 
 /* --------------------------------------------------------------------------
-   ACTIVE NAV LINK HIGHLIGHTER
+   ACTIVE NAV LINK HIGHLIGHTER (CLEAN URL COMPATIBLE)
    -------------------------------------------------------------------------- */
 function highlightActiveNavLink() {
-  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  const pathname = window.location.pathname;
+  let currentFile = pathname.split('/').pop().replace('.html', '') || 'index';
+  if (currentFile === '' || currentFile === 'index') {
+    currentFile = 'index';
+  }
+
   const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
 
   navLinks.forEach((link) => {
     const href = link.getAttribute('href');
     if (!href) return;
 
-    // Direct match or root home match
-    if (
-      href === currentPath ||
-      (currentPath === '' && href === 'index.html') ||
-      (currentPath === 'index.html' && href === 'index.html')
-    ) {
+    let cleanHref = href.split('?')[0].split('#')[0].replace(/^\.\//, '').replace('.html', '');
+    if (cleanHref === '' || cleanHref === '.' || cleanHref === 'index') {
+      cleanHref = 'index';
+    }
+
+    if (cleanHref === currentFile) {
       link.classList.add('active');
     } else {
       link.classList.remove('active');
     }
   });
+}
+
+/* --------------------------------------------------------------------------
+   SCROLL REVEAL ANIMATIONS (INTERSECTION OBSERVER)
+   -------------------------------------------------------------------------- */
+function initScrollAnimations() {
+  const revealElements = document.querySelectorAll('.reveal, .reveal-up, .reveal-down, .reveal-left, .reveal-right, .reveal-zoom');
+  if (!revealElements.length) return;
+
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealElements.forEach((el) => {
+      revealObserver.observe(el);
+    });
+  } else {
+    // Fallback for browsers without IntersectionObserver
+    revealElements.forEach((el) => el.classList.add('active'));
+  }
+}
+
+/* --------------------------------------------------------------------------
+   ANIMATED NUMBER COUNTERS ON SCROLL
+   -------------------------------------------------------------------------- */
+function initAnimatedCounters() {
+  const counterElements = document.querySelectorAll('[data-counter], .animate-number');
+  if (!counterElements.length) return;
+
+  const runCounter = (el) => {
+    const target = parseFloat(el.getAttribute('data-target') || el.textContent.replace(/[^0-9.]/g, ''));
+    if (isNaN(target)) return;
+
+    const prefix = el.getAttribute('data-prefix') || '';
+    const suffix = el.getAttribute('data-suffix') || '';
+    const duration = parseInt(el.getAttribute('data-duration') || '1600', 10);
+    const hasDecimal = target % 1 !== 0;
+
+    let startTime = null;
+
+    const step = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      // Easing: easeOutExpo
+      const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      const current = target * ease;
+
+      el.textContent = `${prefix}${hasDecimal ? current.toFixed(1) : Math.floor(current).toLocaleString('en-IN')}${suffix}`;
+
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      } else {
+        el.textContent = `${prefix}${hasDecimal ? target.toFixed(1) : target.toLocaleString('en-IN')}${suffix}`;
+      }
+    };
+
+    window.requestAnimationFrame(step);
+  };
+
+  if ('IntersectionObserver' in window) {
+    const counterObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          runCounter(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    counterElements.forEach((el) => counterObserver.observe(el));
+  } else {
+    counterElements.forEach((el) => runCounter(el));
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -62,10 +159,12 @@ function toggleMobileMenu() {
     drawer.classList.remove('open');
     if (iconOpen) iconOpen.style.display = 'block';
     if (iconClose) iconClose.style.display = 'none';
+    document.body.style.overflow = '';
   } else {
     drawer.classList.add('open');
     if (iconOpen) iconOpen.style.display = 'none';
     if (iconClose) iconClose.style.display = 'block';
+    document.body.style.overflow = 'hidden';
   }
 }
 
@@ -78,7 +177,7 @@ function toggleFaq(itemIndex) {
 
   const isActive = faqItem.classList.contains('active');
 
-  // Optional: close other accordions
+  // Close all other accordions
   const allFaqs = document.querySelectorAll('.faq-item');
   allFaqs.forEach((item) => item.classList.remove('active'));
 
@@ -144,7 +243,7 @@ function simulateIncomingLead() {
 
   // Create new stream element
   const item = document.createElement('div');
-  item.className = 'stream-item';
+  item.className = 'stream-item reveal-zoom active';
   item.style.borderColor = 'var(--leads-violet)';
   item.innerHTML = `
     <div class="stream-item-left">
@@ -169,7 +268,7 @@ function simulateIncomingLead() {
    PRICING PLAN PRE-FILL HELPER
    -------------------------------------------------------------------------- */
 function selectPricingPlan(planName) {
-  window.location.href = `contact.html?plan=${encodeURIComponent(planName)}`;
+  window.location.href = `contact?plan=${encodeURIComponent(planName)}`;
 }
 
 function handleUrlPlanParam() {

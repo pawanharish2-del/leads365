@@ -6,6 +6,33 @@
   <title>About Us | Leads365 — SaaS CRM Product by Chonexa Technologies</title>
   <meta name="description" content="Learn about Leads365, the leading Indian Sales CRM by Chonexa Technologies based in Malviya Nagar, Jaipur. Empowering 10,000+ sales teams with effortless lead management." />
   <meta name="keywords" content="About Leads365, Chonexa Technologies, Jaipur CRM Company, Lead Management Software India, Amazing IT" />
+  <meta name="author" content="Chonexa Technologies" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://leads365.in/about" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://leads365.in/about" />
+  <meta property="og:title" content="About Us | Leads365 — SaaS CRM Product by Chonexa Technologies" />
+  <meta property="og:description" content="Learn about Leads365, the leading Indian Sales CRM by Chonexa Technologies based in Malviya Nagar, Jaipur." />
+  <meta property="og:image" content="https://leads365.in/assets/images/LEADS365_Logo.png" />
+  <meta property="og:site_name" content="Leads365" />
+  <meta property="og:locale" content="en_IN" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://leads365.in/about" />
+  <meta name="twitter:title" content="About Us | Leads365 — SaaS CRM Product by Chonexa Technologies" />
+  <meta name="twitter:description" content="Leads365 was built by Chonexa Technologies in Jaipur to eliminate lead leakage and empower fast-growing sales teams." />
+  <meta name="twitter:image" content="https://leads365.in/assets/images/LEADS365_Logo.png" />
+
+  <!-- Geo Meta Tags for Jaipur / Rajasthan / India -->
+  <meta name="geo.region" content="IN-RJ" />
+  <meta name="geo.placename" content="Jaipur, Rajasthan, India" />
+  <meta name="geo.position" content="26.852468;75.811801" />
+  <meta name="ICBM" content="26.852468, 75.811801" />
 
   <!-- Google Fonts: Montserrat (Display) & Plus Jakarta Sans (Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,6 +45,50 @@
 
   <!-- Global Shared Stylesheet -->
   <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- JSON-LD Structured Data: AboutPage & BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://leads365.in/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "About Us",
+            "item": "https://leads365.in/about"
+          }
+        ]
+      },
+      {
+        "@type": "AboutPage",
+        "@id": "https://leads365.in/about#aboutpage",
+        "name": "About Leads365 & Chonexa Technologies",
+        "description": "Leads365 is a cloud-based sales CRM and lead management platform developed by Chonexa Technologies in Jaipur, Rajasthan.",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Chonexa Technologies",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Malviya Nagar",
+            "addressLocality": "Jaipur",
+            "addressRegion": "Rajasthan",
+            "postalCode": "302017",
+            "addressCountry": "IN"
+          }
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -49,23 +120,23 @@
        ===================================================================== -->
   <header id="site-header" class="site-header">
     <div class="container navbar">
-      <a href="index.html" class="brand-logo-wrap" aria-label="Leads365 Home">
+      <a href="./" class="brand-logo-wrap" aria-label="Leads365 Home">
         <img src="assets/images/LEADS365_Logo.png" alt="Leads365 Logo" class="brand-logo-img" />
       </a>
 
-      <!-- Desktop Navigation Links -->
+      <!-- Desktop Navigation Links (Clean URLs) -->
       <nav class="nav-links" aria-label="Main Navigation">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="features.html" class="nav-link">Features & Industries</a>
-        <a href="pricing.html" class="nav-link">Pricing & FAQs</a>
-        <a href="about.html" class="nav-link active">About Us</a>
-        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="./" class="nav-link">Home</a>
+        <a href="features" class="nav-link">Features & Industries</a>
+        <a href="pricing" class="nav-link">Pricing & FAQs</a>
+        <a href="about" class="nav-link active">About Us</a>
+        <a href="contact" class="nav-link">Contact</a>
       </nav>
 
       <!-- Action Buttons -->
       <div class="nav-actions">
         <button onclick="openLoginModal()" class="btn btn-secondary btn-sm">Login</button>
-        <a href="contact.html" class="btn btn-primary btn-sm">
+        <a href="contact" class="btn btn-primary btn-sm">
           <span>Book a Free Demo</span>
           <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
         </a>
@@ -81,15 +152,15 @@
     <!-- Mobile Drawer -->
     <div id="mobile-drawer" class="mobile-nav-drawer">
       <div class="mobile-nav-list">
-        <a href="index.html" class="mobile-nav-link" onclick="toggleMobileMenu()">Home</a>
-        <a href="features.html" class="mobile-nav-link" onclick="toggleMobileMenu()">Features & Industries</a>
-        <a href="pricing.html" class="mobile-nav-link" onclick="toggleMobileMenu()">Pricing & FAQs</a>
-        <a href="about.html" class="mobile-nav-link active" onclick="toggleMobileMenu()">About Us</a>
-        <a href="contact.html" class="mobile-nav-link" onclick="toggleMobileMenu()">Contact Us</a>
+        <a href="./" class="mobile-nav-link" onclick="toggleMobileMenu()">Home</a>
+        <a href="features" class="mobile-nav-link" onclick="toggleMobileMenu()">Features & Industries</a>
+        <a href="pricing" class="mobile-nav-link" onclick="toggleMobileMenu()">Pricing & FAQs</a>
+        <a href="about" class="mobile-nav-link active" onclick="toggleMobileMenu()">About Us</a>
+        <a href="contact" class="mobile-nav-link" onclick="toggleMobileMenu()">Contact Us</a>
       </div>
       <div class="mobile-nav-actions">
         <button onclick="openLoginModal(); toggleMobileMenu();" class="btn btn-secondary w-full">Login to CRM</button>
-        <a href="contact.html" onclick="toggleMobileMenu()" class="btn btn-primary w-full">Book a Free Demo</a>
+        <a href="contact" onclick="toggleMobileMenu()" class="btn btn-primary w-full">Book a Free Demo</a>
       </div>
     </div>
   </header>
@@ -98,9 +169,9 @@
        3. PAGE HEADER BANNER
        ===================================================================== -->
   <section class="page-header-banner text-center">
-    <div class="container">
+    <div class="container reveal-up">
       <div class="breadcrumb-nav">
-        <a href="index.html">Home</a>
+        <a href="./">Home</a>
         <span>/</span>
         <span>About Us</span>
       </div>
@@ -119,7 +190,7 @@
       <div class="grid-2 items-center" style="gap: 3.5rem;">
         
         <!-- Story Column -->
-        <div>
+        <div class="reveal-left">
           <span class="badge-eyebrow">Our Story & Purpose</span>
           <h2 class="section-title" style="margin-top: 0.85rem; line-height: 1.2;">
             Built to Eliminate the <span class="text-gradient-365">50% Lead Leakage</span> Problem
@@ -136,7 +207,7 @@
         </div>
 
         <!-- Right Visual Card & Corporate Overview -->
-        <div>
+        <div class="reveal-right">
           <div class="card feature-demo-card">
             <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border-medium);">
               <div style="width: 50px; height: 50px; border-radius: 12px; background: var(--leads-navy); color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">🏢</div>
@@ -167,7 +238,7 @@
 
             <div style="margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--border-medium); display: flex; align-items: center; justify-content: space-between;">
               <span style="font-size: 0.85rem; font-weight: 700; color: var(--leads-navy);">Need a custom demo?</span>
-              <a href="contact.html" class="btn btn-primary btn-sm">Talk to Us</a>
+              <a href="contact" class="btn btn-primary btn-sm">Talk to Us</a>
             </div>
           </div>
         </div>
@@ -184,7 +255,7 @@
       <div class="grid-2" style="gap: 2.5rem;">
         
         <!-- Mission Card -->
-        <div class="card" style="border-top: 4px solid var(--leads-violet);">
+        <div class="card reveal-left" style="border-top: 4px solid var(--leads-violet);">
           <div class="card-icon-box card-icon-purple">🎯</div>
           <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Our Mission</h3>
           <p style="font-size: 1.05rem; color: var(--text-body); line-height: 1.7;">
@@ -193,7 +264,7 @@
         </div>
 
         <!-- Vision Card -->
-        <div class="card" style="border-top: 4px solid var(--leads-cyan-dark);">
+        <div class="card reveal-right" style="border-top: 4px solid var(--leads-cyan-dark);">
           <div class="card-icon-box card-icon-cyan">🔭</div>
           <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Our Vision</h3>
           <p style="font-size: 1.05rem; color: var(--text-body); line-height: 1.7;">
@@ -210,7 +281,7 @@
        ===================================================================== -->
   <section class="section-padding bg-white">
     <div class="container">
-      <div class="section-header text-center">
+      <div class="section-header text-center reveal-up">
         <span class="badge-eyebrow">The Leads365 Standard</span>
         <h2 class="section-title">The Four Core Pillars That <span class="text-gradient-365">Set Us Apart</span></h2>
         <p class="section-subtitle">
@@ -220,7 +291,7 @@
 
       <div class="grid-4">
         <!-- Pillar 1 -->
-        <div class="card">
+        <div class="card reveal-up stagger-1">
           <div class="card-icon-box card-icon-purple">⚡</div>
           <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Zero Learning Curve</h3>
           <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6;">
@@ -229,7 +300,7 @@
         </div>
 
         <!-- Pillar 2 -->
-        <div class="card">
+        <div class="card reveal-up stagger-2">
           <div class="card-icon-box card-icon-cyan">🇮🇳</div>
           <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Built for Indian Workflows</h3>
           <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6;">
@@ -238,7 +309,7 @@
         </div>
 
         <!-- Pillar 3 -->
-        <div class="card">
+        <div class="card reveal-up stagger-3">
           <div class="card-icon-box card-icon-green">🤝</div>
           <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Dedicated Local Support</h3>
           <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6;">
@@ -247,7 +318,7 @@
         </div>
 
         <!-- Pillar 4 -->
-        <div class="card">
+        <div class="card reveal-up stagger-4">
           <div class="card-icon-box card-icon-blue">🔒</div>
           <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Bank-Grade Data Security</h3>
           <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6;">
@@ -263,14 +334,14 @@
        ===================================================================== -->
   <section class="section-padding-sm bg-light">
     <div class="container">
-      <div class="card cta-banner-card">
+      <div class="card cta-banner-card reveal-zoom">
         <span class="badge-eyebrow badge-white" style="margin-bottom: 1rem;">Experience the Difference</span>
         <h2>Let’s Transform Your Sales Operations</h2>
         <p>
           Schedule a live 1-on-1 walkthrough with our product team from Jaipur and see how Leads365 automates your pipeline.
         </p>
         <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-          <a href="contact.html" class="btn btn-primary btn-lg">Schedule a Free Demo</a>
+          <a href="contact" class="btn btn-primary btn-lg">Schedule a Free Demo</a>
           <a href="tel:+917791910007" class="btn btn-outline-white btn-lg">Call Us: +91 77919 10007</a>
         </div>
       </div>
@@ -286,7 +357,7 @@
         
         <!-- Col 1: Brand & Parent Company -->
         <div class="footer-brand-col">
-          <a href="index.html" class="footer-logo-wrap" aria-label="Leads365 Home">
+          <a href="./" class="footer-logo-wrap" aria-label="Leads365 Home">
             <img src="assets/images/LEADS365_Logo.png" alt="Leads365 Logo" class="footer-logo-img" />
           </a>
           <p class="footer-about-text">
@@ -298,12 +369,12 @@
         <div>
           <h3 class="footer-col-heading">Quick Links</h3>
           <div class="footer-links-list">
-            <a href="index.html" class="footer-link">Home</a>
-            <a href="features.html" class="footer-link">CRM Features</a>
-            <a href="features.html#industries" class="footer-link">Industry Verticals</a>
-            <a href="pricing.html" class="footer-link">Pricing Plans</a>
-            <a href="about.html" class="footer-link">About Us</a>
-            <a href="contact.html" class="footer-link">Contact & Demo</a>
+            <a href="./" class="footer-link">Home</a>
+            <a href="features" class="footer-link">CRM Features</a>
+            <a href="features#industries" class="footer-link">Industry Verticals</a>
+            <a href="pricing" class="footer-link">Pricing Plans</a>
+            <a href="about" class="footer-link">About Us</a>
+            <a href="contact" class="footer-link">Contact & Demo</a>
           </div>
         </div>
 
@@ -311,11 +382,11 @@
         <div>
           <h3 class="footer-col-heading">Legal & Resources</h3>
           <div class="footer-links-list">
-            <a href="pricing.html#faq" class="footer-link">Frequently Asked Questions</a>
-            <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
-            <a href="privacy-policy.html#terms" class="footer-link">Terms & Conditions</a>
-            <a href="privacy-policy.html#security" class="footer-link">Data Security Guarantee</a>
-            <a href="contact.html" class="footer-link">Book Free Demo</a>
+            <a href="pricing#faq" class="footer-link">Frequently Asked Questions</a>
+            <a href="privacy-policy" class="footer-link">Privacy Policy</a>
+            <a href="privacy-policy#terms" class="footer-link">Terms & Conditions</a>
+            <a href="privacy-policy#security" class="footer-link">Data Security Guarantee</a>
+            <a href="contact" class="footer-link">Book Free Demo</a>
           </div>
         </div>
 

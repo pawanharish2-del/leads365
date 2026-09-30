@@ -2568,3 +2568,143 @@ textarea.form-control {
     font-size: 0.9rem;
   }
 }
+
+/* ==========================================================================
+   22. ANIMATION ENGINE & RICH MICRO-INTERACTIONS
+   ========================================================================== */
+
+/* Shimmer Sweep on Primary Buttons */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(25deg);
+  transition: none;
+  animation: shimmer-sweep 4.5s infinite ease-in-out;
+}
+
+@keyframes shimmer-sweep {
+  0% { left: -60%; }
+  25% { left: 140%; }
+  100% { left: 140%; }
+}
+
+/* Hero Preview Window Gentle Floating */
+.crm-mockup-window {
+  animation: hero-float 7s ease-in-out infinite alternate;
+}
+
+@keyframes hero-float {
+  0% {
+    transform: translateY(0px);
+    box-shadow: 0 25px 50px -12px rgba(0, 28, 113, 0.25);
+  }
+  100% {
+    transform: translateY(-8px);
+    box-shadow: 0 35px 60px -15px rgba(89, 0, 217, 0.3);
+  }
+}
+
+/* Scroll Reveal Base Classes (Intersection Observer) */
+.reveal {
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-up {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-down {
+  opacity: 0;
+  transform: translateY(-32px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(32px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-zoom {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Active Visible State Triggered by JS Observer */
+.reveal.is-revealed,
+.reveal-up.is-revealed,
+.reveal-down.is-revealed,
+.reveal-left.is-revealed,
+.reveal-right.is-revealed,
+.reveal-zoom.is-revealed {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+/* Stagger Delays for Grid Children */
+.stagger-1 { transition-delay: 0.1s; }
+.stagger-2 { transition-delay: 0.2s; }
+.stagger-3 { transition-delay: 0.3s; }
+.stagger-4 { transition-delay: 0.4s; }
+.stagger-5 { transition-delay: 0.5s; }
+.stagger-6 { transition-delay: 0.6s; }
+
+/* Subtle Glow Pulse for Hot Badges */
+.glow-pulse {
+  animation: badge-glow 2.5s infinite;
+}
+
+@keyframes badge-glow {
+  0% { box-shadow: 0 0 0 0 rgba(0, 200, 234, 0.5); }
+  70% { box-shadow: 0 0 0 10px rgba(0, 200, 234, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 200, 234, 0); }
+}
+
+/* Accessibility: Turn off animations for users preferring reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal,
+  .reveal-up,
+  .reveal-down,
+  .reveal-left,
+  .reveal-right,
+  .reveal-zoom {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .crm-mockup-window {
+    animation: none !important;
+  }
+}
+

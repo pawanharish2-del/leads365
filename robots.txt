@@ -1,0 +1,39 @@
+# ==============================================================================
+# LEADS365.IN — ROBOTS.TXT
+# Web Crawlers & AI Indexing Guidelines
+# Product by Chonexa Technologies | Jaipur, Rajasthan, India
+# ==============================================================================
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+
+# AI & LLM Search Agents (AEO - Answer Engine Optimization)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Canonical XML Sitemap
+Sitemap: https://leads365.in/sitemap.xml

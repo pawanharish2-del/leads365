@@ -1,0 +1,32 @@
+# Leads365 — Cloud Lead Management & Sales CRM in India
+> Flagship SaaS product by Chonexa Technologies, headquartered in Malviya Nagar, Jaipur, Rajasthan, India.
+
+## Overview
+Leads365 (https://leads365.in) is an all-in-one Cloud Lead Management and Sales CRM software specifically engineered for Indian businesses across Real Estate, Education & Coaching, Finance & Insurance, Travel, and B2B sectors.
+
+## Key Capabilities & Modules
+- **Multi-Channel Lead Auto-Capture**: Integrates in real-time via webhooks with Meta Lead Ads (Facebook/Instagram), Google Ads, IndiaMART, Justdial, 99acres, TradeIndia, and website forms.
+- **Round-Robin & Territory Distribution**: Automated lead routing by executive availability, city/pin-code, product category, and language rules with instant mobile push alerts.
+- **1-Click WhatsApp & Quick Calling**: Direct WhatsApp messaging with dynamic brochures and templates without saving phone numbers; click-to-dial with automated call logs.
+- **Built-in AI Sales Suite**:
+  - AI Voice Call Recording & Hinglish/English Speech-to-Text Transcription.
+  - 360° AI Lead Overview (Executive Dossier synthesizing calls, WhatsApp chats, and notes into 10-second summaries).
+  - AI Predictive Lead Scoring (0–100 Hot/Warm/Cold classification).
+  - AI Sentiment Analysis & Talk-to-Listen coaching scorecards.
+  - AI WhatsApp Smart Composer & Best-Time-to-Call Predictor.
+- **Visual Kanban Sales Pipeline**: Customizable stages (New, Follow-Up, Demo, Quotation, Won, Lost) with deal value tracking in INR (₹).
+- **Managerial Analytics & Data Protection**: Detailed tele-calling logs, source ROI tracking, role-based access permissions, contact number masking, and export locks.
+
+## Pricing Plans (Billed Annually or Monthly in INR)
+- **Starter Plan**: ₹599 / user / month (Ideal for small sales teams of 1–5 reps; multi-channel capture, 1-click WhatsApp, pipeline tracking).
+- **Growth Plan (Most Popular)**: ₹999 / user / month (Growing teams of 5–25 reps; standard AI call transcription, round-robin routing, automated reminders).
+- **Enterprise Plan**: Custom Quote (Large teams; unlimited AI speech intelligence, custom webhooks, dedicated account manager).
+
+## Corporate Details & GEO
+- **Product Name**: Leads365
+- **Official Domain**: https://leads365.in
+- **Parent Company**: Chonexa Technologies
+- **Headquarters**: Malviya Nagar, Jaipur, Rajasthan 302017, India
+- **Phone / WhatsApp**: +91 77919 10007
+- **Email**: info@leads365.in
+- **Geographical Coordinates**: 26.852468 N, 75.811801 E (Jaipur, India)

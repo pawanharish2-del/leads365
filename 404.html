@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Page Not Found | Leads365 CRM</title>
+  <meta name="description" content="The page you are looking for does not exist on Leads365.in. Return to our homepage or explore our CRM features." />
+  <meta name="robots" content="noindex, follow" />
+
+  <!-- Google Fonts: Montserrat (Display) & Plus Jakarta Sans (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/images/favicon.png" />
+
+  <!-- Global Shared Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body style="min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between;">
+
+  <!-- Sticky Navbar Header -->
+  <header id="site-header" class="site-header">
+    <div class="container navbar">
+      <a href="./" class="brand-logo-wrap" aria-label="Leads365 Home">
+        <img src="assets/images/LEADS365_Logo.png" alt="Leads365 Logo" class="brand-logo-img" />
+      </a>
+      <nav class="nav-links" aria-label="Main Navigation">
+        <a href="./" class="nav-link">Home</a>
+        <a href="features" class="nav-link">Features & Industries</a>
+        <a href="pricing" class="nav-link">Pricing & FAQs</a>
+        <a href="about" class="nav-link">About Us</a>
+        <a href="contact" class="nav-link">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="contact" class="btn btn-primary btn-sm">Book a Demo</a>
+      </div>
+      <button onclick="toggleMobileMenu()" class="mobile-menu-btn" aria-label="Toggle Mobile Menu">
+        <svg id="menu-icon-open" width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="menu-icon-close" width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div id="mobile-drawer" class="mobile-nav-drawer">
+      <div class="mobile-nav-list">
+        <a href="./" class="mobile-nav-link" onclick="toggleMobileMenu()">Home</a>
+        <a href="features" class="mobile-nav-link" onclick="toggleMobileMenu()">Features & Industries</a>
+        <a href="pricing" class="mobile-nav-link" onclick="toggleMobileMenu()">Pricing & FAQs</a>
+        <a href="about" class="mobile-nav-link" onclick="toggleMobileMenu()">About Us</a>
+        <a href="contact" class="mobile-nav-link" onclick="toggleMobileMenu()">Contact Us</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 404 Main Body -->
+  <main class="section-padding text-center" style="flex: 1; display: flex; align-items: center;">
+    <div class="container container-narrow">
+      <div class="card" style="padding: clamp(2rem, 5vw, 3.5rem); border: 2px solid var(--border-light);">
+        <div style="font-family: var(--font-display); font-size: clamp(4.5rem, 12vw, 7.5rem); font-weight: 900; line-height: 1; margin-bottom: 1rem;" class="text-gradient-365">
+          404
+        </div>
+        <span class="badge-eyebrow" style="margin-bottom: 1rem;">Page Not Found</span>
+        <h1 style="font-size: clamp(1.5rem, 3.5vw, 2.2rem); margin-bottom: 1rem; color: var(--leads-navy);">
+          Oops! The lead you’re chasing isn’t here.
+        </h1>
+        <p style="color: var(--text-muted); max-width: 520px; margin: 0 auto 2rem; font-size: var(--font-size-base);">
+          The URL you requested may have moved or doesn't exist. Let's get you back to closing deals with Leads365.
+        </p>
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+          <a href="./" class="btn btn-primary btn-lg">Return to Homepage</a>
+          <a href="features" class="btn btn-secondary btn-lg">Explore CRM Features</a>
+          <a href="contact" class="btn btn-secondary btn-lg">Contact Support</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Simple Footer -->
+  <footer class="site-footer" style="padding: 2rem 0;">
+    <div class="container text-center">
+      <p style="font-size: var(--font-size-xs); color: var(--text-white-subtle);">
+        © 2026 Leads365. Flagship SaaS product of <strong>Chonexa Technologies</strong> — Malviya Nagar, Jaipur, Rajasthan 302017.
+      </p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
