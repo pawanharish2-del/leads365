@@ -68,26 +68,41 @@ function initScrollAnimations() {
   const revealElements = document.querySelectorAll('.reveal, .reveal-up, .reveal-down, .reveal-left, .reveal-right, .reveal-zoom');
   if (!revealElements.length) return;
 
+  const revealEl = (el) => {
+    el.classList.add('active', 'is-revealed');
+  };
+
   if ('IntersectionObserver' in window) {
     const revealObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('active');
+          revealEl(entry.target);
           observer.unobserve(entry.target);
         }
       });
     }, {
       root: null,
-      threshold: 0.12,
-      rootMargin: '0px 0px -40px 0px'
+      threshold: 0.05,
+      rootMargin: '0px 0px 50px 0px'
     });
 
     revealElements.forEach((el) => {
-      revealObserver.observe(el);
+      // If already in viewport on load, reveal immediately
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        revealEl(el);
+      } else {
+        revealObserver.observe(el);
+      }
     });
+
+    // Safety fallback: reveal all after 1.5s in case of headless or weird scroll containers
+    setTimeout(() => {
+      revealElements.forEach(revealEl);
+    }, 1500);
   } else {
     // Fallback for browsers without IntersectionObserver
-    revealElements.forEach((el) => el.classList.add('active'));
+    revealElements.forEach(revealEl);
   }
 }
 

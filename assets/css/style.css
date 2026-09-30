@@ -2657,14 +2657,20 @@ textarea.form-control {
 }
 
 /* Active Visible State Triggered by JS Observer */
+.reveal.active,
 .reveal.is-revealed,
+.reveal-up.active,
 .reveal-up.is-revealed,
+.reveal-down.active,
 .reveal-down.is-revealed,
+.reveal-left.active,
 .reveal-left.is-revealed,
+.reveal-right.active,
 .reveal-right.is-revealed,
+.reveal-zoom.active,
 .reveal-zoom.is-revealed {
-  opacity: 1;
-  transform: translate(0, 0) scale(1);
+  opacity: 1 !important;
+  transform: translate(0, 0) scale(1) !important;
 }
 
 /* Stagger Delays for Grid Children */
