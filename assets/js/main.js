@@ -391,56 +391,263 @@ document.addEventListener('keydown', (e) => {
 });
 
 /* --------------------------------------------------------------------------
-   INTERACTIVE AI CALL PLAYER DEMO (HOME PAGE)
+   INTERACTIVE REAL-TIME AI ENGINE SIMULATION (HOME PAGE)
    -------------------------------------------------------------------------- */
 let isAiDemoPlaying = false;
 let aiTimerInterval = null;
-let aiSeconds = 14;
+let aiTypewriterTimeout = null;
+let aiCurrentStepIndex = 0;
+let aiTotalElapsedSecs = 0;
+let aiPlayheadProgress = 0;
+
+const aiDemoScript = [
+  {
+    speaker: 'agent',
+    speakerLabel: 'Agent (Priya M.):',
+    tagClass: 'speaker-agent-tag',
+    bubbleClass: 'speaker-agent',
+    text: "Namaste Rajesh Ji! Leads365 CRM ke 3BHK luxury villas regarding follow-up call kiya tha. Next month possession ready hai.",
+    talkAgent: 65,
+    talkCust: 35,
+    sentiment: 'Positive Intent (88%)',
+    sentimentClass: 'sentiment-positive',
+    leadScore: '🎯 Lead Score: 86/100 (Warm)',
+    leadScoreClass: 'sentiment-positive',
+    bulletId: 'ai-bullet-req',
+    durationSecs: 3
+  },
+  {
+    speaker: 'customer',
+    speakerLabel: 'Customer (Rajesh Sharma):',
+    tagClass: 'speaker-customer-tag',
+    bubbleClass: 'speaker-customer',
+    text: "Haan Priya ji, hum weekend par family ke sath site visit karna chahte hain. HDFC pre-approved loan ₹1.4 Cr ready hai.",
+    talkAgent: 38,
+    talkCust: 62,
+    sentiment: '🔥 High Buying Intent (94%)',
+    sentimentClass: 'sentiment-hot',
+    leadScore: '🎯 Lead Score: 94/100 (Hot 🔥)',
+    leadScoreClass: 'sentiment-hot',
+    bulletId: 'ai-bullet-budget',
+    durationSecs: 4
+  },
+  {
+    speaker: 'agent',
+    speakerLabel: 'Agent (Priya M.):',
+    tagClass: 'speaker-agent-tag',
+    bubbleClass: 'speaker-agent',
+    text: "Perfect sir! Saturday 11:30 AM VIP slot lock kar diya hai aur floor plan WhatsApp par dispatch ho gaya hai.",
+    talkAgent: 42,
+    talkCust: 58,
+    sentiment: '⚡ VIP Lead: Ready to Close (96%)',
+    sentimentClass: 'sentiment-hot',
+    leadScore: '🎯 Lead Score: 98/100 (Top Tier ⚡)',
+    leadScoreClass: 'sentiment-hot',
+    bulletId: 'ai-bullet-action',
+    durationSecs: 3
+  }
+];
 
 function toggleAiCallDemo() {
   const btn = document.getElementById('ai-play-btn');
   const waveform = document.getElementById('ai-waveform');
-  const timerText = document.getElementById('ai-call-timer');
-  const transcriptText = document.getElementById('ai-live-transcript');
-  const summaryBlock = document.getElementById('ai-summary-bullets');
+  if (!btn || !waveform) return;
+
+  if (isAiDemoPlaying) {
+    pauseAiCallDemo();
+  } else {
+    startAiCallDemo();
+  }
+}
+
+function startAiCallDemo() {
+  const btn = document.getElementById('ai-play-btn');
+  const waveform = document.getElementById('ai-waveform');
+  const liveBadge = document.getElementById('ai-live-badge');
+  const transcriptBox = document.getElementById('ai-live-transcript');
 
   if (!btn || !waveform) return;
 
-  isAiDemoPlaying = !isAiDemoPlaying;
+  isAiDemoPlaying = true;
+  waveform.classList.add('playing');
+  if (liveBadge) liveBadge.style.display = 'inline-flex';
 
-  if (isAiDemoPlaying) {
-    waveform.classList.add('playing');
-    btn.innerHTML = `<svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/></svg> <span>Pause Analysis</span>`;
-    btn.style.background = 'var(--gradient-cyan)';
-    btn.style.color = 'var(--leads-navy-dark)';
+  btn.innerHTML = `<svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/></svg> <span>Pause Live Stream</span>`;
+  btn.style.background = 'var(--gradient-cyan)';
+  btn.style.color = 'var(--leads-navy-dark)';
 
-    // Start timer increment
-    aiTimerInterval = setInterval(() => {
-      aiSeconds++;
-      const mins = Math.floor(aiSeconds / 60);
-      const secs = aiSeconds % 60;
-      if (timerText) {
-        timerText.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')} / 03:42`;
-      }
-    }, 1000);
+  // If at start, clear transcript container
+  if (aiCurrentStepIndex === 0 && transcriptBox) {
+    transcriptBox.innerHTML = '';
+    resetAiBullets();
+  }
 
-    if (transcriptText) {
-      transcriptText.innerHTML = `
-        <span class="speaker-tag speaker-agent">Agent (Priya):</span> "Namaste Rajesh Ji! Leads365 CRM ke 3BHK luxury villas regarding call kiya tha. Possession next month ready hai."<br>
-        <span class="speaker-tag speaker-customer">Customer:</span> "Haan Priya ji, hum weekend par family ke sath site visit karna chahte hain. HDFC loan already approved hai."
-      `;
-    }
+  // Start real-time elapsed timer
+  clearInterval(aiTimerInterval);
+  aiTimerInterval = setInterval(updateAiTimerAndPlayhead, 250);
 
-    if (summaryBlock) {
-      summaryBlock.style.opacity = '1';
-      summaryBlock.style.transform = 'translateY(0)';
-    }
+  // Play dialogue steps sequentially
+  streamNextAiDialogueStep();
+}
 
-  } else {
-    waveform.classList.remove('playing');
-    btn.innerHTML = `<svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> <span>Play Sample AI Analysis</span>`;
+function pauseAiCallDemo() {
+  const btn = document.getElementById('ai-play-btn');
+  const waveform = document.getElementById('ai-waveform');
+  const liveBadge = document.getElementById('ai-live-badge');
+
+  isAiDemoPlaying = false;
+  if (waveform) waveform.classList.remove('playing');
+  if (liveBadge) liveBadge.style.display = 'none';
+
+  if (btn) {
+    btn.innerHTML = `<svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> <span>Resume Live Stream</span>`;
     btn.style.background = 'var(--gradient-btn)';
     btn.style.color = '#FFFFFF';
-    clearInterval(aiTimerInterval);
+  }
+
+  clearInterval(aiTimerInterval);
+  clearTimeout(aiTypewriterTimeout);
+}
+
+function updateAiTimerAndPlayhead() {
+  aiTotalElapsedSecs += 0.25;
+  const totalDuration = 10.0;
+  const playhead = document.getElementById('ai-waveform-playhead');
+  const timerText = document.getElementById('ai-call-timer');
+
+  const progressPct = Math.min((aiTotalElapsedSecs / totalDuration) * 100, 100);
+  if (playhead) {
+    playhead.style.left = progressPct + '%';
+  }
+
+  if (timerText) {
+    const mins = Math.floor(aiTotalElapsedSecs / 60);
+    const secs = Math.floor(aiTotalElapsedSecs % 60);
+    timerText.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')} / 00:10`;
   }
 }
+
+function streamNextAiDialogueStep() {
+  if (!isAiDemoPlaying) return;
+
+  if (aiCurrentStepIndex >= aiDemoScript.length) {
+    // Demo sequence finished
+    onAiDemoCompleted();
+    return;
+  }
+
+  const step = aiDemoScript[aiCurrentStepIndex];
+  const transcriptBox = document.getElementById('ai-live-transcript');
+  if (!transcriptBox) return;
+
+  // Update Talk Ratio Bar & Text
+  const talkAgentBar = document.getElementById('ai-talk-ratio-agent');
+  const talkCustBar = document.getElementById('ai-talk-ratio-cust');
+  const talkAgentText = document.getElementById('ai-talk-agent-pct');
+  const talkCustText = document.getElementById('ai-talk-cust-pct');
+
+  if (talkAgentBar) talkAgentBar.style.width = step.talkAgent + '%';
+  if (talkCustBar) talkCustBar.style.width = step.talkCust + '%';
+  if (talkAgentText) talkAgentText.textContent = step.talkAgent + '%';
+  if (talkCustText) talkCustText.textContent = step.talkCust + '%';
+
+  // Update Sentiment Badge
+  const sentimentBadge = document.getElementById('ai-sentiment-badge');
+  const sentimentText = document.getElementById('ai-sentiment-text');
+  if (sentimentBadge && sentimentText) {
+    sentimentBadge.className = 'sentiment-badge ' + step.sentimentClass;
+    sentimentText.textContent = 'Sentiment: ' + step.sentiment;
+  }
+
+  // Update Lead Score Badge
+  const leadScoreBadge = document.getElementById('ai-lead-score-badge');
+  if (leadScoreBadge) {
+    leadScoreBadge.className = 'sentiment-badge ' + step.leadScoreClass;
+    leadScoreBadge.innerHTML = `<span>${step.leadScore}</span>`;
+  }
+
+  // Highlight Right Card Bullet
+  highlightAiBullet(step.bulletId);
+
+  // Create active dialogue row
+  const turnEl = document.createElement('div');
+  turnEl.className = `transcript-turn ${step.bubbleClass} active-speaker`;
+  turnEl.innerHTML = `<span class="speaker-tag ${step.tagClass}">${step.speakerLabel}</span> <span class="stream-text"></span><span class="transcript-cursor">▌</span>`;
+  transcriptBox.appendChild(turnEl);
+  transcriptBox.scrollTop = transcriptBox.scrollHeight;
+
+  const textSpan = turnEl.querySelector('.stream-text');
+  const cursorSpan = turnEl.querySelector('.transcript-cursor');
+  let charIndex = 0;
+  const fullText = step.text;
+  const typeSpeed = Math.max(20, Math.floor((step.durationSecs * 1000) / fullText.length));
+
+  function typeNextChar() {
+    if (!isAiDemoPlaying) return;
+
+    if (charIndex < fullText.length) {
+      textSpan.textContent += fullText.charAt(charIndex);
+      charIndex++;
+      transcriptBox.scrollTop = transcriptBox.scrollHeight;
+      aiTypewriterTimeout = setTimeout(typeNextChar, typeSpeed);
+    } else {
+      // Finished typing this turn
+      turnEl.classList.remove('active-speaker');
+      if (cursorSpan) cursorSpan.remove();
+      aiCurrentStepIndex++;
+      aiTypewriterTimeout = setTimeout(streamNextAiDialogueStep, 700);
+    }
+  }
+
+  typeNextChar();
+}
+
+function highlightAiBullet(bulletId) {
+  if (!bulletId) return;
+  const bullet = document.getElementById(bulletId);
+  if (bullet) {
+    bullet.classList.add('is-highlighted');
+  }
+}
+
+function resetAiBullets() {
+  ['ai-bullet-req', 'ai-bullet-budget', 'ai-bullet-action'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.remove('is-highlighted');
+  });
+}
+
+function onAiDemoCompleted() {
+  pauseAiCallDemo();
+  const btn = document.getElementById('ai-play-btn');
+  if (btn) {
+    btn.innerHTML = `<svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg> <span>Replay AI Live Demo</span>`;
+    btn.style.background = 'var(--gradient-btn)';
+    btn.style.color = '#FFFFFF';
+  }
+  // Reset index for replay
+  aiCurrentStepIndex = 0;
+  aiTotalElapsedSecs = 0;
+}
+
+// Auto-trigger when scrolled into view
+document.addEventListener('DOMContentLoaded', () => {
+  const aiSection = document.getElementById('ai-waveform');
+  if (aiSection && 'IntersectionObserver' in window) {
+    let hasAutoStarted = false;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !hasAutoStarted && !isAiDemoPlaying) {
+          hasAutoStarted = true;
+          setTimeout(() => {
+            if (!isAiDemoPlaying) {
+              startAiCallDemo();
+            }
+          }, 600);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.35 });
+    observer.observe(aiSection);
+  }
+});

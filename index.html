@@ -420,14 +420,15 @@
                 <span style="font-size: 0.75rem; color: rgba(255, 255, 255, 0.7);">Recorded Call #9842 • Priya M. (Executive)</span>
               </div>
             </div>
-            <div class="sentiment-badge sentiment-positive">
+            <div id="ai-sentiment-badge" class="sentiment-badge sentiment-positive">
               <span>●</span>
-              <span>Sentiment: Positive (88%)</span>
+              <span id="ai-sentiment-text">Sentiment: Positive (88%)</span>
             </div>
           </div>
 
-          <!-- Waveform Visualizer -->
+          <!-- Waveform Visualizer with Laser Playhead -->
           <div id="ai-waveform" class="waveform-container">
+            <div id="ai-waveform-playhead" class="waveform-playhead"></div>
             <span class="waveform-bar" style="height: 35%;"></span>
             <span class="waveform-bar" style="height: 65%;"></span>
             <span class="waveform-bar" style="height: 45%;"></span>
@@ -448,26 +449,39 @@
             <span class="waveform-bar" style="height: 75%;"></span>
             <span class="waveform-bar" style="height: 60%;"></span>
             <span class="waveform-bar" style="height: 35%;"></span>
+            <span class="waveform-bar" style="height: 85%;"></span>
+            <span class="waveform-bar" style="height: 50%;"></span>
+            <span class="waveform-bar" style="height: 70%;"></span>
+            <span class="waveform-bar" style="height: 40%;"></span>
+            <span class="waveform-bar" style="height: 80%;"></span>
+            <span class="waveform-bar" style="height: 60%;"></span>
+            <span class="waveform-bar" style="height: 45%;"></span>
+            <span class="waveform-bar" style="height: 70%;"></span>
           </div>
 
           <!-- Controls & Timer Row -->
           <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 0.75rem; margin-bottom: 1.25rem;">
             <button id="ai-play-btn" onclick="toggleAiCallDemo()" class="btn btn-sm btn-primary" style="gap: 0.4rem; padding: 0.55rem 1.2rem;">
               <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              <span>Play Sample AI Analysis</span>
+              <span>Play Real-Time AI Demo</span>
             </button>
-            <span id="ai-call-timer" style="font-size: 0.85rem; font-weight: 700; color: #00E5FF;">01:14 / 03:42</span>
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <span id="ai-live-badge" class="live-status-pill" style="display: none;">
+                <span class="live-status-dot"></span> LIVE
+              </span>
+              <span id="ai-call-timer" style="font-size: 0.85rem; font-weight: 700; color: #00E5FF;">00:00 / 01:30</span>
+            </div>
           </div>
 
           <!-- Talk-to-Listen Ratio -->
           <div style="margin-bottom: 1.25rem;">
             <div style="display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: 700; color: rgba(255, 255, 255, 0.8);">
-              <span>Executive Talk: <strong>42%</strong></span>
-              <span>Customer Listen: <strong>58% (Ideal)</strong></span>
+              <span>Executive Talk: <strong id="ai-talk-agent-pct">42%</strong></span>
+              <span>Customer Listen: <strong id="ai-talk-cust-pct">58% (Ideal)</strong></span>
             </div>
             <div class="talk-ratio-bar">
-              <div class="talk-ratio-agent" style="width: 42%;"></div>
-              <div class="talk-ratio-customer" style="width: 58%;"></div>
+              <div id="ai-talk-ratio-agent" class="talk-ratio-agent" style="width: 42%;"></div>
+              <div id="ai-talk-ratio-cust" class="talk-ratio-customer" style="width: 58%;"></div>
             </div>
           </div>
 
@@ -477,8 +491,12 @@
               Auto Speech-to-Text Transcript (Hinglish/English AI)
             </div>
             <div id="ai-live-transcript" class="transcript-snippet-box">
-              <span class="speaker-tag speaker-agent">Agent (Priya):</span> "Namaste Rajesh Ji! Leads365 CRM ke 3BHK luxury villas regarding call kiya tha. Possession next month ready hai."<br>
-              <span class="speaker-tag speaker-customer">Customer:</span> "Haan Priya ji, hum weekend par family ke sath site visit karna chahte hain. HDFC loan already approved hai."
+              <div class="transcript-turn speaker-agent">
+                <span class="speaker-tag speaker-agent-tag">Agent (Priya):</span> "Namaste Rajesh Ji! Leads365 CRM ke 3BHK luxury villas regarding follow-up call kiya tha. Possession next month ready hai."
+              </div>
+              <div class="transcript-turn speaker-customer">
+                <span class="speaker-tag speaker-customer-tag">Customer (Rajesh):</span> "Haan Priya ji, hum weekend par family ke sath site visit karna chahte hain. HDFC loan already approved hai."
+              </div>
             </div>
           </div>
         </div>
@@ -493,7 +511,7 @@
                 <span style="font-size: 0.75rem; color: rgba(255, 255, 255, 0.7);">Lead Dossier: Rajesh Sharma (High Intent)</span>
               </div>
             </div>
-            <div class="sentiment-badge sentiment-positive">
+            <div id="ai-lead-score-badge" class="sentiment-badge sentiment-positive">
               <span>🎯 Lead Score: 92/100 (Hot)</span>
             </div>
           </div>
@@ -504,7 +522,7 @@
 
           <!-- 3 Smart Bullet Points -->
           <div id="ai-summary-bullets">
-            <div class="ai-summary-bullet">
+            <div id="ai-bullet-req" class="ai-summary-bullet">
               <div class="ai-bullet-icon icon-req">🎯</div>
               <div>
                 <strong style="color: #FFFFFF; font-size: 0.88rem; display: block; margin-bottom: 2px;">Customer Requirement:</strong>
@@ -512,7 +530,7 @@
               </div>
             </div>
 
-            <div class="ai-summary-bullet">
+            <div id="ai-bullet-budget" class="ai-summary-bullet">
               <div class="ai-bullet-icon icon-budget">💰</div>
               <div>
                 <strong style="color: #34D399; font-size: 0.88rem; display: block; margin-bottom: 2px;">Budget & Purchase Timeline:</strong>
@@ -520,7 +538,7 @@
               </div>
             </div>
 
-            <div class="ai-summary-bullet">
+            <div id="ai-bullet-action" class="ai-summary-bullet">
               <div class="ai-bullet-icon icon-action">⚡</div>
               <div>
                 <strong style="color: #00E5FF; font-size: 0.88rem; display: block; margin-bottom: 2px;">AI-Recommended Next Action:</strong>
