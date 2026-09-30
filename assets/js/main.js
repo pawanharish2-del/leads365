@@ -398,7 +398,7 @@ let aiTimerInterval = null;
 let aiTypewriterTimeout = null;
 let aiCurrentStepIndex = 0;
 let aiTotalElapsedSecs = 0;
-let aiPlayheadProgress = 0;
+const aiTotalDemoDuration = 26.0; // 26 seconds total natural cadence
 
 const aiDemoScript = [
   {
@@ -414,7 +414,8 @@ const aiDemoScript = [
     leadScore: '🎯 Lead Score: 86/100 (Warm)',
     leadScoreClass: 'sentiment-positive',
     bulletId: 'ai-bullet-req',
-    durationSecs: 3
+    charDelay: 60,       // smooth, comfortable reading pace (60ms per char)
+    pauseAfterMs: 1800   // 1.8s breath before next turn
   },
   {
     speaker: 'customer',
@@ -429,7 +430,8 @@ const aiDemoScript = [
     leadScore: '🎯 Lead Score: 94/100 (Hot 🔥)',
     leadScoreClass: 'sentiment-hot',
     bulletId: 'ai-bullet-budget',
-    durationSecs: 4
+    charDelay: 62,
+    pauseAfterMs: 1800
   },
   {
     speaker: 'agent',
@@ -444,7 +446,8 @@ const aiDemoScript = [
     leadScore: '🎯 Lead Score: 98/100 (Top Tier ⚡)',
     leadScoreClass: 'sentiment-hot',
     bulletId: 'ai-bullet-action',
-    durationSecs: 3
+    charDelay: 60,
+    pauseAfterMs: 2200
   }
 ];
 
@@ -476,15 +479,15 @@ function startAiCallDemo() {
   btn.style.background = 'var(--gradient-cyan)';
   btn.style.color = 'var(--leads-navy-dark)';
 
-  // If at start, clear transcript container
+  // If at start or replay, clear transcript container
   if (aiCurrentStepIndex === 0 && transcriptBox) {
     transcriptBox.innerHTML = '';
     resetAiBullets();
   }
 
-  // Start real-time elapsed timer
+  // Start real-time elapsed timer (smooth update every 200ms)
   clearInterval(aiTimerInterval);
-  aiTimerInterval = setInterval(updateAiTimerAndPlayhead, 250);
+  aiTimerInterval = setInterval(updateAiTimerAndPlayhead, 200);
 
   // Play dialogue steps sequentially
   streamNextAiDialogueStep();
@@ -510,12 +513,12 @@ function pauseAiCallDemo() {
 }
 
 function updateAiTimerAndPlayhead() {
-  aiTotalElapsedSecs += 0.25;
-  const totalDuration = 10.0;
+  if (!isAiDemoPlaying) return;
+  aiTotalElapsedSecs += 0.2;
   const playhead = document.getElementById('ai-waveform-playhead');
   const timerText = document.getElementById('ai-call-timer');
 
-  const progressPct = Math.min((aiTotalElapsedSecs / totalDuration) * 100, 100);
+  const progressPct = Math.min((aiTotalElapsedSecs / aiTotalDemoDuration) * 100, 100);
   if (playhead) {
     playhead.style.left = progressPct + '%';
   }
@@ -523,7 +526,7 @@ function updateAiTimerAndPlayhead() {
   if (timerText) {
     const mins = Math.floor(aiTotalElapsedSecs / 60);
     const secs = Math.floor(aiTotalElapsedSecs % 60);
-    timerText.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')} / 00:10`;
+    timerText.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')} / 00:26`;
   }
 }
 
@@ -531,7 +534,7 @@ function streamNextAiDialogueStep() {
   if (!isAiDemoPlaying) return;
 
   if (aiCurrentStepIndex >= aiDemoScript.length) {
-    // Demo sequence finished
+    // Demo sequence finished smoothly
     onAiDemoCompleted();
     return;
   }
@@ -540,7 +543,7 @@ function streamNextAiDialogueStep() {
   const transcriptBox = document.getElementById('ai-live-transcript');
   if (!transcriptBox) return;
 
-  // Update Talk Ratio Bar & Text
+  // Update Talk Ratio Bar & Text with smooth ease
   const talkAgentBar = document.getElementById('ai-talk-ratio-agent');
   const talkCustBar = document.getElementById('ai-talk-ratio-cust');
   const talkAgentText = document.getElementById('ai-talk-agent-pct');
@@ -580,7 +583,6 @@ function streamNextAiDialogueStep() {
   const cursorSpan = turnEl.querySelector('.transcript-cursor');
   let charIndex = 0;
   const fullText = step.text;
-  const typeSpeed = Math.max(20, Math.floor((step.durationSecs * 1000) / fullText.length));
 
   function typeNextChar() {
     if (!isAiDemoPlaying) return;
@@ -589,13 +591,19 @@ function streamNextAiDialogueStep() {
       textSpan.textContent += fullText.charAt(charIndex);
       charIndex++;
       transcriptBox.scrollTop = transcriptBox.scrollHeight;
-      aiTypewriterTimeout = setTimeout(typeNextChar, typeSpeed);
+      // Natural slight variation for spaces/punctuation
+      const currentChar = fullText.charAt(charIndex - 1);
+      const delay = (currentChar === '.' || currentChar === '!') ? step.charDelay * 2.5 : (currentChar === ' ' ? step.charDelay * 1.3 : step.charDelay);
+      aiTypewriterTimeout = setTimeout(typeNextChar, delay);
     } else {
-      // Finished typing this turn
-      turnEl.classList.remove('active-speaker');
-      if (cursorSpan) cursorSpan.remove();
+      // Finished typing this turn - let cursor linger gracefully
+      setTimeout(() => {
+        turnEl.classList.remove('active-speaker');
+        if (cursorSpan) cursorSpan.remove();
+      }, 500);
+
       aiCurrentStepIndex++;
-      aiTypewriterTimeout = setTimeout(streamNextAiDialogueStep, 700);
+      aiTypewriterTimeout = setTimeout(streamNextAiDialogueStep, step.pauseAfterMs);
     }
   }
 
@@ -643,7 +651,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!isAiDemoPlaying) {
               startAiCallDemo();
             }
-          }, 600);
+          }, 800);
           observer.unobserve(entry.target);
         }
       });
