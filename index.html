@@ -653,86 +653,6 @@
   </section>
 
   <!-- =====================================================================
-       6b. INTERACTIVE LIVE DASHBOARD PREVIEW TOUR
-       ===================================================================== -->
-  <section class="section-padding bg-white">
-    <div class="container">
-      <div class="section-header text-center reveal-up">
-        <div class="badge-eyebrow">
-          <span class="badge-dot"></span>
-          <span>Real CRM Interface</span>
-        </div>
-        <h2 class="section-title">A CRM designed for <span class="text-gradient-365">how sales actually happens</span></h2>
-        <p class="section-subtitle">
-          Explore the clean, intuitive interfaces your tele-calling reps, team leads, and sales managers will use every single day.
-        </p>
-      </div>
-
-      <!-- Tab Switcher Navigation -->
-      <div class="dashboard-tab-nav reveal-up">
-        <button onclick="switchDashboardTab('pipeline')" class="dashboard-tab-btn active" data-tab="pipeline">
-          📊 Kanban Sales Pipeline
-        </button>
-        <button onclick="switchDashboardTab('stream')" class="dashboard-tab-btn" data-tab="stream">
-          📥 Multi-Channel Inbound Stream
-        </button>
-        <button onclick="switchDashboardTab('ai')" class="dashboard-tab-btn" data-tab="ai">
-          🎙️ AI Call Intelligence & Transcripts
-        </button>
-      </div>
-
-      <!-- Tab Panel 1: Kanban Sales Pipeline -->
-      <div id="panel-pipeline" class="dashboard-view-panel reveal-up" style="max-width: 1060px; margin: 0 auto;">
-        <div class="browser-mockup-frame">
-          <div class="browser-mockup-header">
-            <div class="browser-dots">
-              <span class="browser-dot red"></span>
-              <span class="browser-dot yellow"></span>
-              <span class="browser-dot green"></span>
-            </div>
-            <div class="browser-url-bar">app.leads365.in/dashboard/pipeline</div>
-            <span style="font-size: 0.72rem; color: var(--leads-cyan); font-weight: 700;">₹42.8 Lakhs Revenue Tracked</span>
-          </div>
-          <img src="assets/images/dashboard-pipeline.jpg" alt="Leads365 Real-Time Sales Pipeline & Kanban Board" class="dashboard-mockup-img" loading="lazy" />
-        </div>
-      </div>
-
-      <!-- Tab Panel 2: Multi-Channel Inbound Stream -->
-      <div id="panel-stream" class="dashboard-view-panel" style="display: none; max-width: 1060px; margin: 0 auto;">
-        <div class="browser-mockup-frame">
-          <div class="browser-mockup-header">
-            <div class="browser-dots">
-              <span class="browser-dot red"></span>
-              <span class="browser-dot yellow"></span>
-              <span class="browser-dot green"></span>
-            </div>
-            <div class="browser-url-bar">app.leads365.in/dashboard/leads-stream</div>
-            <span style="font-size: 0.72rem; color: #34D399; font-weight: 700;">● Real-time Speed &lt; 3 Seconds</span>
-          </div>
-          <img src="assets/images/dashboard-leads-stream.jpg" alt="Leads365 Multi-Channel Inbound Lead Stream Dashboard" class="dashboard-mockup-img" loading="lazy" />
-        </div>
-      </div>
-
-      <!-- Tab Panel 3: AI Call Intelligence -->
-      <div id="panel-ai" class="dashboard-view-panel" style="display: none; max-width: 1060px; margin: 0 auto;">
-        <div class="browser-mockup-frame">
-          <div class="browser-mockup-header">
-            <div class="browser-dots">
-              <span class="browser-dot red"></span>
-              <span class="browser-dot yellow"></span>
-              <span class="browser-dot green"></span>
-            </div>
-            <div class="browser-url-bar">app.leads365.in/dashboard/ai-insights</div>
-            <span style="font-size: 0.72rem; color: #C084FC; font-weight: 700;">✨ Dual Hinglish / English NLP Engine</span>
-          </div>
-          <img src="assets/images/dashboard-ai-analytics.jpg" alt="Leads365 AI Voice Intelligence & Call Summary Dashboard" class="dashboard-mockup-img" loading="lazy" />
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- =====================================================================
        7. CORE FEATURES BENTO GRID (ASYMMETRICAL LAYOUT)
        ===================================================================== -->
   <section class="section-padding bg-white">
@@ -746,15 +666,30 @@
       </div>
 
       <div class="grid-bento">
-        <!-- Bento Feature 1 (Hero Wide - Span 8) -->
+        <!-- Bento Feature 1 (Hero Wide - Span 8 with Embedded Live Stream Preview) -->
         <div class="bento-card-lg reveal-up stagger-1">
           <div class="card-featured-badge">⚡ Zero Lead Leakage</div>
-          <div class="card-icon-box card-icon-purple">📥</div>
-          <h3 class="card-title">Instant Multi-Channel Capture from Meta, Google & IndiaMART</h3>
-          <p class="card-desc">
-            Stop manually copying leads from ad managers and portals. Leads365 hooks directly into Facebook Ads, Google Search Ads, IndiaMART, Justdial, 99acres, and website contact forms via webhook in real time.
-          </p>
-          <a href="features" class="card-action-link">Explore all 20+ connected integrations →</a>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; align-items: center; margin-top: 0.5rem;">
+            <div>
+              <div class="card-icon-box card-icon-purple">📥</div>
+              <h3 class="card-title">Instant Multi-Channel Capture from Meta, Google & IndiaMART</h3>
+              <p class="card-desc">
+                Stop manually copying leads from ad managers and portals. Leads365 hooks directly into Facebook Ads, Google Search Ads, IndiaMART, Justdial, 99acres, and website contact forms via webhook in real time.
+              </p>
+              <a href="features" class="card-action-link">Explore all 20+ connected integrations →</a>
+            </div>
+            <div class="browser-mockup-frame" style="box-shadow: 0 10px 30px rgba(26, 11, 46, 0.1);">
+              <div class="browser-mockup-header" style="padding: 0.45rem 0.8rem;">
+                <div class="browser-dots">
+                  <span class="browser-dot red"></span>
+                  <span class="browser-dot yellow"></span>
+                  <span class="browser-dot green"></span>
+                </div>
+                <div class="browser-url-bar" style="font-size: 0.68rem;">leads365.in/leads-stream</div>
+              </div>
+              <img src="assets/images/dashboard-leads-stream.jpg" alt="Leads365 Real-Time Multi-Channel Inbound Leads Stream Dashboard" class="dashboard-mockup-img" loading="lazy" style="border-radius: 0 0 8px 8px; width: 100%; height: auto; display: block;" />
+            </div>
+          </div>
         </div>
 
         <!-- Bento Feature 2 (Span 4) -->
@@ -787,14 +722,27 @@
           <a href="features" class="card-action-link">Follow-up workflows →</a>
         </div>
 
-        <!-- Bento Feature 5 (Span 4) -->
-        <div class="bento-card-md reveal-up stagger-5">
-          <div class="card-icon-box card-icon-blue">📊</div>
-          <h3 class="card-title">Visual Funnel with Live ₹ Revenue</h3>
-          <p class="card-desc">
-            Drag-and-drop deals across custom stages (New, Qualified, Site Visit, Quoted, Won) with real-time ₹ INR totals.
-          </p>
-          <a href="features" class="card-action-link">Pipeline preview →</a>
+        <!-- Bento Feature 5 (Span 4 with Embedded Visual Pipeline Preview) -->
+        <div class="bento-card-md reveal-up stagger-5" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div class="card-icon-box card-icon-blue">📊</div>
+            <h3 class="card-title">Visual Funnel with Live ₹ Revenue</h3>
+            <p class="card-desc">
+              Drag-and-drop deals across custom stages (New, Qualified, Site Visit, Quoted, Won) with real-time ₹ INR totals.
+            </p>
+          </div>
+          <div class="browser-mockup-frame" style="margin-top: 1rem; box-shadow: 0 8px 24px rgba(26, 11, 46, 0.08);">
+            <div class="browser-mockup-header" style="padding: 0.4rem 0.65rem;">
+              <div class="browser-dots">
+                <span class="browser-dot red"></span>
+                <span class="browser-dot yellow"></span>
+                <span class="browser-dot green"></span>
+              </div>
+              <div class="browser-url-bar" style="font-size: 0.65rem;">leads365.in/pipeline</div>
+            </div>
+            <img src="assets/images/dashboard-pipeline.jpg" alt="Leads365 Real-Time Sales Pipeline & Kanban Board" class="dashboard-mockup-img" loading="lazy" style="border-radius: 0 0 6px 6px; width: 100%; height: auto; display: block;" />
+          </div>
+          <a href="features" class="card-action-link" style="margin-top: 0.85rem;">Pipeline preview →</a>
         </div>
       </div>
 
