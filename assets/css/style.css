@@ -614,6 +614,100 @@ ul, ol {
   max-width: 100%;
 }
 
+/* --------------------------------------------------------------------------
+   6b. BROWSER MOCKUP FRAMES & REAL DASHBOARD PREVIEWS
+   -------------------------------------------------------------------------- */
+.browser-mockup-frame {
+  background: var(--bg-surface);
+  border-radius: var(--radius-card-lg);
+  border: 1px solid var(--border-medium);
+  box-shadow: 0 20px 45px -10px rgba(0, 28, 113, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
+              box-shadow 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  width: 100%;
+}
+
+.browser-mockup-frame:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 25px 60px -12px rgba(139, 32, 238, 0.25), 0 0 0 1px rgba(139, 32, 238, 0.2);
+}
+
+.browser-mockup-header {
+  background: #0B194C;
+  padding: 0.65rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.browser-dots {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.browser-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: var(--radius-full);
+}
+
+.browser-dot.red { background: #FF5F56; }
+.browser-dot.yellow { background: #FFBD2E; }
+.browser-dot.green { background: #27C93F; }
+
+.browser-url-bar {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-xs);
+  padding: 0.2rem 0.75rem;
+  font-size: 0.72rem;
+  color: var(--leads-cyan);
+  font-family: monospace;
+  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.dashboard-mockup-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.dashboard-tab-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.dashboard-tab-btn {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-white-subtle);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 0.5rem 1.15rem;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.dashboard-tab-btn.active,
+.dashboard-tab-btn:hover {
+  background: var(--gradient-btn);
+  color: #FFFFFF;
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(139, 32, 238, 0.4);
+}
+
 .cta-banner-card {
   background: linear-gradient(135deg, #060E2A 0%, #0B194C 60%, #4F00C2 100%);
   color: var(--text-white);

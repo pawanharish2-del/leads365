@@ -665,3 +665,22 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(aiSection);
   }
 });
+
+/* --------------------------------------------------------------------------
+   DASHBOARD TOUR TAB SWITCHER
+   -------------------------------------------------------------------------- */
+function switchDashboardTab(tabName) {
+  const tabs = document.querySelectorAll('.dashboard-tab-btn');
+  tabs.forEach(tab => {
+    tab.classList.toggle('active', tab.getAttribute('data-tab') === tabName);
+  });
+  
+  const panels = document.querySelectorAll('.dashboard-view-panel');
+  panels.forEach(panel => {
+    if (panel.id === 'panel-' + tabName) {
+      panel.style.display = 'block';
+    } else {
+      panel.style.display = 'none';
+    }
+  });
+}
