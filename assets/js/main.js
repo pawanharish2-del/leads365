@@ -62,14 +62,22 @@ function highlightActiveNavLink() {
 }
 
 /* --------------------------------------------------------------------------
-   SCROLL REVEAL ANIMATIONS (INTERSECTION OBSERVER)
+   SCROLL REVEAL ANIMATIONS (BESPOKE INTERSECTION OBSERVER)
    -------------------------------------------------------------------------- */
 function initScrollAnimations() {
-  const revealElements = document.querySelectorAll('.reveal, .reveal-up, .reveal-down, .reveal-left, .reveal-right, .reveal-zoom');
+  const revealElements = document.querySelectorAll('.reveal, .reveal-up, .reveal-down, .reveal-left, .reveal-right, .reveal-zoom, .reveal-stagger');
   if (!revealElements.length) return;
 
   const revealEl = (el) => {
     el.classList.add('active', 'is-revealed');
+    // Stagger immediate children if container has .reveal-stagger
+    if (el.classList.contains('reveal-stagger')) {
+      const children = el.children;
+      Array.from(children).forEach((child, index) => {
+        child.style.transitionDelay = `${index * 80}ms`;
+        child.classList.add('is-revealed');
+      });
+    }
   };
 
   if ('IntersectionObserver' in window) {
@@ -82,12 +90,11 @@ function initScrollAnimations() {
       });
     }, {
       root: null,
-      threshold: 0.05,
-      rootMargin: '0px 0px 50px 0px'
+      threshold: 0.08,
+      rootMargin: '0px 0px -40px 0px'
     });
 
     revealElements.forEach((el) => {
-      // If already in viewport on load, reveal immediately
       const rect = el.getBoundingClientRect();
       if (rect.top < window.innerHeight && rect.bottom > 0) {
         revealEl(el);
@@ -96,12 +103,11 @@ function initScrollAnimations() {
       }
     });
 
-    // Safety fallback: reveal all after 1.5s in case of headless or weird scroll containers
+    // Safety fallback: reveal all after 1.2s
     setTimeout(() => {
       revealElements.forEach(revealEl);
-    }, 1500);
+    }, 1200);
   } else {
-    // Fallback for browsers without IntersectionObserver
     revealElements.forEach(revealEl);
   }
 }
