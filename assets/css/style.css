@@ -1370,6 +1370,199 @@ ul, ol {
 }
 
 /* --------------------------------------------------------------------------
+   10b. CLIENT TRUST MARQUEE & SHOWCASE CARDS
+   -------------------------------------------------------------------------- */
+.client-marquee-bar {
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-light);
+  padding: 1.5rem 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.client-marquee-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.client-marquee-label {
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.client-marquee-logos {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  flex-wrap: wrap;
+}
+
+.client-marquee-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.85;
+  filter: grayscale(100%);
+  transition: all var(--transition-normal);
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-sm);
+  background: transparent;
+}
+
+.client-marquee-item:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+  transform: translateY(-2px);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-sm);
+}
+
+.client-marquee-item img {
+  height: clamp(24px, 3.5vw, 36px);
+  width: auto;
+  max-width: 170px;
+  object-fit: contain;
+}
+
+/* Dedicated Client Case Cards Section */
+.client-showcase-section {
+  position: relative;
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.client-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.client-brand-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-card-lg);
+  padding: clamp(1.75rem, 3.5vw, 2.25rem);
+  box-shadow: var(--shadow-card);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
+              box-shadow 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
+              border-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.client-brand-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--leads-cyan), var(--leads-indigo));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.client-brand-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: rgba(139, 32, 238, 0.3);
+}
+
+.client-brand-card:hover::before {
+  opacity: 1;
+}
+
+.client-logo-wrapper {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.client-brand-logo {
+  max-height: 44px;
+  max-width: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+.client-vertical-tag {
+  display: inline-block;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--leads-indigo);
+  background: rgba(139, 32, 238, 0.08);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.85rem;
+  width: fit-content;
+}
+
+.client-brand-name {
+  font-family: var(--font-display);
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--leads-navy);
+  margin-bottom: 0.5rem;
+}
+
+.client-brand-desc {
+  font-size: var(--font-size-sm);
+  color: var(--text-body);
+  line-height: 1.65;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.client-visit-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--leads-indigo);
+  transition: gap 0.2s ease, color 0.2s ease;
+}
+
+.client-brand-card:hover .client-visit-link {
+  color: var(--leads-cyan);
+  gap: 0.65rem;
+}
+
+@media (max-width: 991px) {
+  .client-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .client-marquee-inner {
+    justify-content: center;
+    text-align: center;
+  }
+  .client-marquee-logos {
+    justify-content: center;
+  }
+}
+
+/* --------------------------------------------------------------------------
    11. ASYMMETRICAL COMPARISON (OLD HABITS VS LEADS365)
    -------------------------------------------------------------------------- */
 .comparison-grid {
