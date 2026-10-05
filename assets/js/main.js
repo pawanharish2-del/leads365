@@ -350,7 +350,7 @@ function handleDemoFormSubmit(event) {
       toast.className = 'toast-banner toast-success';
       toast.innerHTML = `
         <strong>✓ Thank you, ${name}!</strong><br>
-        Your live demo request for <strong>${business}</strong> (${team || 'Sales Team'}) has been submitted. Our product specialist from Malviya Nagar, Jaipur will call/WhatsApp you on <strong>${phone}</strong> shortly.
+        Your live demo request for <strong>${business}</strong> (${team || 'Sales Team'}) has been submitted. Our product specialist from Bhamashah Techno Hub, Jaipur will call/WhatsApp you on <strong>${phone}</strong> shortly.
       `;
       toast.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }

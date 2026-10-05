@@ -62,6 +62,6 @@ Then visit `http://localhost:8000` in your web browser.
 
 - **Product Name**: Leads365 ([www.leads365.in](https://leads365.in))
 - **Parent Company**: **Chonexa Technologies**
-- **Headquarters**: Malviya Nagar, Jaipur, Rajasthan 302017, India
+- **Headquarters**: Bhamashah Techno Hub Sansthan Path, Jhalana Gram, Malviya Nagar, Jaipur, Rajasthan 302017, India
 - **Contact**: [+91 77919 10007](tel:+917791910007) | [info@leads365.in](mailto:info@leads365.in)
 - **Design & Development**: **Amazing IT**
