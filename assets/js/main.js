@@ -684,3 +684,29 @@ function switchDashboardTab(tabName) {
     }
   });
 }
+
+/* --------------------------------------------------------------------------
+   LOCATIONS WE SERVE TOGGLER
+   -------------------------------------------------------------------------- */
+function toggleLocationsGrid() {
+  const grid = document.getElementById('locations-expanded-grid');
+  const btn = document.getElementById('toggle-locations-btn');
+  const icon = document.getElementById('locations-toggle-icon');
+  const text = document.getElementById('locations-toggle-text');
+
+  if (!grid || !btn) return;
+
+  const isHidden = grid.style.display === 'none' || window.getComputedStyle(grid).display === 'none';
+  if (isHidden) {
+    grid.style.display = 'grid';
+    btn.setAttribute('aria-expanded', 'true');
+    if (text) text.textContent = 'Hide Additional Cities & Regions';
+    if (icon) icon.style.transform = 'rotate(180deg)';
+  } else {
+    grid.style.display = 'none';
+    btn.setAttribute('aria-expanded', 'false');
+    if (text) text.textContent = 'View all 40+ Indian Cities & Regions';
+    if (icon) icon.style.transform = 'rotate(0deg)';
+  }
+}
+
