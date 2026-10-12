@@ -35,5 +35,11 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
 # Canonical XML Sitemap
 Sitemap: https://leads365.in/sitemap.xml

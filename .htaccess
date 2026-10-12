@@ -16,6 +16,10 @@
   RewriteCond %{HTTPS} off
   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+  # Enforce Canonical Non-WWW Host (Redirect www.leads365.in to https://leads365.in)
+  RewriteCond %{HTTP_HOST} ^www\.leads365\.in$ [NC]
+  RewriteRule ^(.*)$ https://leads365.in/$1 [L,R=301]
+
   # Redirect URLs with .html extension to clean URLs (301 Permanent Redirect for SEO)
   RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.html [NC]
   RewriteRule ^ %1 [R=301,L]

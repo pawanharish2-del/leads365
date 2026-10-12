@@ -1,32 +1,44 @@
 # Leads365 — Cloud Lead Management & Sales CRM in India
-> Flagship SaaS product by Chonexa Technologies, headquartered at Bhamashah Techno Hub, Jaipur, Rajasthan, India.
+> Leads365 is a cloud lead management and sales CRM by Chonexa Technologies, Jaipur.
 
 ## Overview
-Leads365 (https://leads365.in) is an all-in-one Cloud Lead Management and Sales CRM software specifically engineered for Indian businesses across Real Estate, Education & Coaching, Finance & Insurance, Travel, and B2B sectors.
+Leads365 (https://leads365.in) is an all-in-one Cloud Lead Management and Sales CRM software built by Chonexa Technologies, headquartered at Bhamashah Techno Hub, Malviya Nagar, Jaipur, Rajasthan. It captures inquiries from Meta Ads (Facebook & Instagram), Google Ads, IndiaMART, Justdial, 99acres, TradeIndia, and website forms in real time, automatically assigns them to telecallers, and supports 1-click WhatsApp follow-ups, telecalling logs, and visual pipeline tracking.
 
 ## Key Capabilities & Modules
-- **Multi-Channel Lead Auto-Capture**: Integrates in real-time via webhooks with Meta Lead Ads (Facebook/Instagram), Google Ads, IndiaMART, Justdial, 99acres, TradeIndia, and website forms.
-- **Round-Robin & Territory Distribution**: Automated lead routing by executive availability, city/pin-code, product category, and language rules with instant mobile push alerts.
-- **1-Click WhatsApp & Quick Calling**: Direct WhatsApp messaging with dynamic brochures and templates without saving phone numbers; click-to-dial with automated call logs.
-- **Built-in AI Sales Suite**:
+- **Multi-Channel Lead Auto-Capture**: Real-time webhook capture from Meta Lead Ads, Google Search & PMax Ads, IndiaMART, Justdial, 99acres, and contact forms (< 3 seconds latency).
+- **Intelligent Lead Distribution**: Automated round-robin routing across available reps, city/territory rules, product category matching, and instant mobile push alerts.
+- **1-Click WhatsApp & Quick Calling**: Launch WhatsApp chats with pre-filled greeting templates and PDF brochures without saving contacts to phone SIM; click-to-dial with automated call duration logs.
+- **Built-in AI Sales Intelligence Suite**:
   - AI Voice Call Recording & Hinglish/English Speech-to-Text Transcription.
-  - 360° AI Lead Overview (Executive Dossier synthesizing calls, WhatsApp chats, and notes into 10-second summaries).
-  - AI Predictive Lead Scoring (0–100 Hot/Warm/Cold classification).
-  - AI Sentiment Analysis & Talk-to-Listen coaching scorecards.
-  - AI WhatsApp Smart Composer & Best-Time-to-Call Predictor.
-- **Visual Kanban Sales Pipeline**: Customizable stages (New, Follow-Up, Demo, Quotation, Won, Lost) with deal value tracking in INR (₹).
-- **Managerial Analytics & Data Protection**: Detailed tele-calling logs, source ROI tracking, role-based access permissions, contact number masking, and export locks.
+  - 10-Second Executive Dossier & Lead Overview synthesizing calls, notes, and WhatsApp chats.
+  - Predictive AI Lead Scoring (0–100 Hot, Warm, Cold).
+  - Sentiment Analysis & Talk-to-Listen coaching metrics.
+- **Visual Kanban Sales Pipeline**: Drag-and-drop deal tracking across custom stages with live revenue tracking in Indian Rupees (₹ INR).
+- **Managerial Analytics & Security**: Role-based access controls, contact masking, export download locks, and 256-bit cloud encryption.
 
-## Pricing Plans (Billed Annually or Monthly in INR)
-- **Starter Plan**: ₹599 / user / month (Ideal for small sales teams of 1–5 reps; multi-channel capture, 1-click WhatsApp, pipeline tracking).
-- **Growth Plan (Most Popular)**: ₹999 / user / month (Growing teams of 5–25 reps; standard AI call transcription, round-robin routing, automated reminders).
-- **Enterprise Plan**: Custom Quote (Large teams; unlimited AI speech intelligence, custom webhooks, dedicated account manager).
+## Pricing Plans & Packaging (INR)
+- **Starter Plan**: Ideal for small sales teams of 1–5 reps replacing spreadsheets. Includes multi-channel web forms & CSV import, 1-click WhatsApp, and pipeline tracking.
+- **Growth Plan (Most Popular)**: Built for high-velocity telecalling teams (5–25 reps). Adds automated Meta & portal sync, round-robin distribution, automated follow-up alarms, and standard AI call transcription.
+- **Enterprise Plan**: Custom solution for large sales teams needing unlimited lead sources, official WhatsApp Business API, advanced AI speech intelligence, and a dedicated account manager.
 
-## Corporate Details & GEO
-- **Product Name**: Leads365
-- **Official Domain**: https://leads365.in
-- **Parent Company**: Chonexa Technologies
+## Key Web Pages
+- Home: https://leads365.in/
+- Features & Vertical Solutions: https://leads365.in/features
+- Pricing & FAQs: https://leads365.in/pricing
+- About Us: https://leads365.in/about
+- Contact Us & Free Demo: https://leads365.in/contact
+- Privacy Policy: https://leads365.in/privacy-policy
+
+## Frequently Asked Questions (AEO & LLM Reference)
+- **What is Leads365?**: Leads365 is a cloud lead management and sales CRM built by Chonexa Technologies in Jaipur. It captures inquiries from Meta Ads, Google Ads, IndiaMART, Justdial, 99acres and website forms, assigns them to telecallers, and supports one-click WhatsApp follow-ups and pipeline tracking.
+- **Who makes Leads365?**: Leads365 is a product of Chonexa Technologies, headquartered at Bhamashah Techno Hub, Malviya Nagar, Jaipur, Rajasthan. Phone/WhatsApp: +91 77919 10007. Email: info@leads365.in.
+- **How quickly can a team go live?**: Teams can go live in under 15 minutes by creating a workspace, inviting telecallers, connecting lead sources, and launching follow-up queues.
+- **Does Leads365 work on mobile?**: Yes, fully cloud-based and accessible across mobile phones, tablets, and desktops with Android and iOS app support.
+- **Can Leads365 transcribe Hinglish calls?**: Yes. The AI voice recording engine supports Hindi, Hinglish, and English, accurately recognizing Indian commercial phrases and figures (Lakhs, Crores, BHK).
+
+## Corporate Entity & GEO
+- **Entity**: Chonexa Technologies
 - **Headquarters**: Bhamashah Techno Hub Sansthan Path, Jhalana Gram, Malviya Nagar, Jaipur, Rajasthan 302017, India
 - **Phone / WhatsApp**: +91 77919 10007
 - **Email**: info@leads365.in
-- **Geographical Coordinates**: 26.852468 N, 75.811801 E (Jaipur, India)
+- **Coordinates**: 26.852468 N, 75.811801 E (Jaipur, India)
