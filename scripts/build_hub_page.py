@@ -858,7 +858,7 @@ def build_hub_page():
               </tr>
               <tr>
                 <td><strong>WhatsApp Business API</strong></td>
-                <td>Add-on marketplace plugins costing extra USD/month with complex technical setup.</td>
+                <td>Add-on marketplace plugins requiring extra recurring fees with complex technical setup.</td>
                 <td><strong>Deep native WhatsApp automation</strong>: instant catalog sharing, PDF quotations, & chat logs.</td>
               </tr>
               <tr>
@@ -877,9 +877,9 @@ def build_hub_page():
                 <td><strong>Clean, zero-training interface</strong>; telecallers master visual disposition workflows in 15 minutes.</td>
               </tr>
               <tr>
-                <td><strong>Pricing & Currency</strong></td>
-                <td>Billed in foreign USD with fluctuating exchange rates, seat tiers, and mandatory consultation fees.</td>
-                <td><strong>Transparent INR pricing (₹499/user/month)</strong> with zero hidden per-connector charges or forced consulting.</td>
+                <td><strong>Pricing & Plans</strong></td>
+                <td>Billed in expensive foreign USD with rigid seat tiers and mandatory consultation fees.</td>
+                <td><strong>Transparent, team-tailored pricing</strong> with zero hidden per-connector charges or forced consulting.</td>
               </tr>
             </tbody>
           </table>
@@ -958,7 +958,7 @@ def build_hub_page():
             <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </button>
           <div class="hub-faq-content">
-            Unlike foreign enterprise CRMs designed for email-first workflows, Leads365 is purpose-built for India's high-speed sales dynamics. It features instant multi-channel lead capture (IndiaMART, TradeIndia, 99acres, Meta Ads), official WhatsApp Business API automation, click-to-dial call masking, Android SIM tracking, and zero-training simplicity—backed by transparent INR pricing at ₹499/user/month.
+            Unlike foreign enterprise CRMs designed for email-first workflows, Leads365 is purpose-built for India's high-speed sales dynamics. It features instant multi-channel lead capture (IndiaMART, TradeIndia, 99acres, Meta Ads), official WhatsApp Business API automation, click-to-dial call masking, Android SIM tracking, and zero-training simplicity—backed by transparent, flexible pricing tailored for Indian teams.
           </div>
         </div>
 

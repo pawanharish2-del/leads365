@@ -462,7 +462,7 @@ CITIES_DATA = [
             ("Automotive Manufacturing & Industrial Engineering", "Manesar IMT, Udyog Vihar Phase 1-5", "Component supply contracts, vendor onboarding pipelines, and procurement follow-ups."),
             ("Corporate Consulting, Legal & Executive Search", "Golf Course Extension, Sector 32", "High-retainer client proposals, contract review stages, and executive talk-time telemetry.")
         ],
-        "local_pain": "Gurugram enterprise sales teams paying ₹1,500+ per lead on Google and LinkedIn bleed pipeline value when executives delay follow-ups or forget scheduled discovery calls."
+        "local_pain": "Gurugram enterprise sales teams investing heavily in premium Google and LinkedIn campaigns bleed pipeline value when executives delay follow-ups or forget scheduled discovery calls."
     },
     {
         "slug": "ghaziabad",
@@ -1307,7 +1307,7 @@ def generate_city_html(city, all_cities):
         "image": "https://leads365.in{banner}",
         "telephone": "+91-77919-10007",
         "email": "info@leads365.in",
-        "priceRange": "₹₹",
+        "priceRange": "$$",
         "address": {{
           "@type": "PostalAddress",
           "streetAddress": "Bhamashah Techno Hub, Sansthan Path, Jhalana Gram, Malviya Nagar",
@@ -1389,7 +1389,7 @@ def generate_city_html(city, all_cities):
             "name": "What is the pricing of Leads365 for sales teams in {name}?",
             "acceptedAnswer": {{
               "@type": "Answer",
-              "text": "Leads365 costs just ₹499 per user per month. All core integrations (Meta Ads, Google, IndiaMART, TradeIndia), unlimited lead storage, WhatsApp Cloud API templates, and live onboarding training are included with zero hidden setup fees."
+              "text": "Leads365 offers flexible, team-tailored pricing plans suited for businesses of all sizes in {name}. There are zero hidden setup fees or complex foreign currency retainers. All core integrations (Meta Ads, Google, IndiaMART, TradeIndia), unlimited lead storage, WhatsApp Cloud API templates, and live onboarding training are available based on your team size. Contact our sales specialists for a personalized plan and live demo."
             }}
           }}
         ]
@@ -1406,8 +1406,7 @@ def generate_city_html(city, all_cities):
         }},
         "offers": {{
           "@type": "Offer",
-          "price": "499",
-          "priceCurrency": "INR"
+          "description": "Customized team plans available upon request"
         }}
       }}
     ]
@@ -1546,7 +1545,7 @@ def generate_city_html(city, all_cities):
             </span>
             <span class="trust-item">
               <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-              ₹499/Seat Fixed Pricing
+              Flexible Team-Based Plans
             </span>
           </div>
         </div>
@@ -1742,9 +1741,9 @@ def generate_city_html(city, all_cities):
         
         <div class="feature-card reveal-up" style="background: var(--bg-card); padding: 2rem; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
           <div class="feature-card-icon card-icon-purple" style="font-size: 1.8rem; margin-bottom: 1rem;">💵</div>
-          <h3 style="font-size: 1.2rem; margin-bottom: 0.65rem;">USD Pricing & Setup Penalties</h3>
+          <h3 style="font-size: 1.2rem; margin-bottom: 0.65rem;">Transparent Team Pricing vs Foreign Fees</h3>
           <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.65;">
-            Foreign software suites bill companies in US Dollars ($50 to $150 per seat every month), plus mandatory multi-lakh implementation consulting fees. Leads365 is priced transparently in Indian Rupees at just ₹499/user/month with zero hidden setup charges.
+            Foreign software suites bill companies in expensive US Dollars, plus mandatory implementation consulting fees and locked-in annual contracts. Leads365 offers transparent, team-tailored pricing plans designed for Indian businesses with zero hidden setup charges or mandatory consulting overheads.
           </p>
         </div>
 
@@ -1971,7 +1970,7 @@ def generate_city_html(city, all_cities):
             What is the pricing of Leads365 for {name} enterprises?
           </summary>
           <div style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.7; margin-top: 0.75rem;">
-            Our transparent pricing starts at <strong>₹499 per user per month</strong>. There are no mandatory foreign currency retainers or hidden setup charges. All core integrations, unlimited lead records, and training workshops are included. Check our full breakdown on our <a href="/pricing" style="color: var(--leads-cyan-dark); font-weight: 600;">Pricing Page</a>.
+            We offer flexible, customized pricing tailored to your team size and operational requirements in {name}. There are no mandatory foreign currency retainers, forced consulting fees, or hidden setup charges. All core integrations, unlimited lead records, and dedicated team training sessions are available. Connect with our specialists or explore our <a href="/pricing" style="color: var(--leads-cyan-dark); font-weight: 600;">Pricing Page</a> to get a tailored plan.
           </div>
         </details>
 
