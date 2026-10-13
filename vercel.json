@@ -3,6 +3,10 @@
   "trailingSlash": false,
   "rewrites": [
     {
+      "source": "/googleffaff865656e63b1.html",
+      "destination": "/googleffaff865656e63b1.html"
+    },
+    {
       "source": "/(google[0-9a-fA-F]+\\.html)",
       "destination": "/$1"
     }
