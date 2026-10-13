@@ -304,10 +304,13 @@ function handleUrlPlanParam() {
 }
 
 /* --------------------------------------------------------------------------
-   CONTACT & DEMO REQUEST FORM HANDLER
+   CONTACT & DEMO REQUEST FORM HANDLER (WEB3FORMS INTEGRATION)
    -------------------------------------------------------------------------- */
-function handleDemoFormSubmit(event) {
+const WEB3FORMS_ACCESS_KEY = '102b7968-4c56-4351-b971-69ce20bcdcfc';
+
+async function handleDemoFormSubmit(event) {
   event.preventDefault();
+  const form = event.target;
 
   const nameInput = document.getElementById('form-name');
   const businessInput = document.getElementById('form-business');
@@ -317,7 +320,7 @@ function handleDemoFormSubmit(event) {
   const industryInput = document.getElementById('form-industry');
   const messageInput = document.getElementById('form-message');
   const toast = document.getElementById('demo-toast');
-  const submitBtn = event.target.querySelector('button[type="submit"]');
+  const submitBtn = form.querySelector('button[type="submit"]');
 
   if (!nameInput || !businessInput || !phoneInput) return;
 
@@ -327,36 +330,90 @@ function handleDemoFormSubmit(event) {
   const email = emailInput ? emailInput.value.trim() : '';
   const team = teamInput ? teamInput.value : '';
   const industry = industryInput ? industryInput.value : '';
+  const message = messageInput ? messageInput.value.trim() : '';
 
   if (!name || !business || !phone) {
     alert('Please fill in all required fields marked with an asterisk (*).');
     return;
   }
 
-  // Button loading state
+  // Collect checked lead sources
+  const checkedSources = [];
+  form.querySelectorAll('input[name="sources"]:checked').forEach(cb => {
+    checkedSources.push(cb.value);
+  });
+
+  const originalBtnHtml = submitBtn ? submitBtn.innerHTML : 'Schedule My Free Live Demo';
+
   if (submitBtn) {
     submitBtn.disabled = true;
     submitBtn.innerHTML = `<span>Scheduling Your Demo...</span>`;
   }
 
-  setTimeout(() => {
+  try {
+    const payload = {
+      access_key: WEB3FORMS_ACCESS_KEY,
+      subject: `New Leads365 Demo Request: ${name} (${business})`,
+      from_name: 'Leads365 CRM Portal',
+      name: name,
+      business_firm: business,
+      phone_whatsapp: phone,
+      email: email || 'Not provided',
+      sales_team_size: team,
+      industry_vertical: industry,
+      current_lead_channels: checkedSources.join(', ') || 'None selected',
+      sales_bottleneck_question: message || 'None provided',
+      source_url: window.location.href,
+      submission_time: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+    };
+
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+
+    const result = await response.json();
+
     if (submitBtn) {
       submitBtn.disabled = false;
-      submitBtn.innerHTML = `<span>Book My Free Demo</span> <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>`;
+      submitBtn.innerHTML = originalBtnHtml;
     }
 
+    if (result.success) {
+      if (toast) {
+        toast.style.display = 'block';
+        toast.className = 'toast-banner toast-success';
+        toast.innerHTML = `
+          <strong>✓ Thank you, ${name}!</strong><br>
+          Your live demo request for <strong>${business}</strong> (${team || 'Sales Team'}) has been submitted directly to our onboarding team at <strong>teamleads365@gmail.com</strong>.<br>
+          Our product specialist from Bhamashah Techno Hub, Jaipur will call/WhatsApp you on <strong>${phone}</strong> within 15 minutes.
+        `;
+        toast.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+      form.reset();
+    } else {
+      throw new Error(result.message || 'Form submission could not be completed');
+    }
+  } catch (error) {
+    console.error('Web3Forms submission error:', error);
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnHtml;
+    }
     if (toast) {
       toast.style.display = 'block';
-      toast.className = 'toast-banner toast-success';
+      toast.className = 'toast-banner toast-warning';
       toast.innerHTML = `
-        <strong>✓ Thank you, ${name}!</strong><br>
-        Your live demo request for <strong>${business}</strong> (${team || 'Sales Team'}) has been submitted. Our product specialist from Bhamashah Techno Hub, Jaipur will call/WhatsApp you on <strong>${phone}</strong> shortly.
+        <strong>Your demo request has been noted!</strong><br>
+        For instant priority scheduling, you can also reach us directly via WhatsApp at <a href="https://wa.me/917791910007" style="color: var(--leads-cyan-dark); font-weight: 700;">+91 77919 10007</a> or email <a href="mailto:teamleads365@gmail.com" style="color: var(--leads-cyan-dark); font-weight: 700;">teamleads365@gmail.com</a>.
       `;
       toast.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
-
-    event.target.reset();
-  }, 700);
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -380,13 +437,50 @@ function closeLoginModal() {
   }
 }
 
-function handleLoginSubmit(event) {
+async function handleLoginSubmit(event) {
   event.preventDefault();
+  const form = event.target;
+  const identifierInput = form.querySelector('input[type="text"]');
   const feedback = document.getElementById('login-modal-feedback');
-  if (feedback) {
-    feedback.style.display = 'block';
-    feedback.innerHTML = `Connecting to Leads365 Cloud Portal... For new corporate provisioning or trial access, please book a demo or call <strong style="color: var(--leads-indigo);">+91 77919 10007</strong>.`;
+  const submitBtn = form.querySelector('button[type="submit"]');
+
+  const identifier = identifierInput ? identifierInput.value.trim() : '';
+
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Connecting...';
   }
+
+  // Notify teamleads365@gmail.com of portal access attempt
+  try {
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_ACCESS_KEY,
+        subject: `Workspace Login / Access Request from ${identifier || 'Visitor'}`,
+        from_name: 'Leads365 Login Portal',
+        registered_identifier: identifier,
+        request_type: 'Portal Login / Client Provisioning Request',
+        page_url: window.location.href,
+        submission_time: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+      })
+    }).catch(err => console.log('Silent login track error', err));
+  } catch (e) {}
+
+  setTimeout(() => {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Sign In to Dashboard';
+    }
+    if (feedback) {
+      feedback.style.display = 'block';
+      feedback.innerHTML = `Connecting to Leads365 Cloud Portal... For new corporate provisioning or trial access, your request has been logged. Our onboarding desk will assist you, or call <strong style="color: var(--leads-indigo);">+91 77919 10007</strong>.`;
+    }
+  }, 600);
 }
 
 // Close modal on escape key

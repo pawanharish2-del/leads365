@@ -1149,7 +1149,7 @@ def build_hub_page():
   </div>
 
   <!-- Shared Global JS -->
-  <script src="/assets/js/main.js?v=2.3"></script>
+  <script src="/assets/js/main.js?v=2.4"></script>
 
   <!-- Interactive Search & Filtering JS -->
   <script>

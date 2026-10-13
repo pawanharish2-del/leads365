@@ -2154,7 +2154,7 @@ def generate_city_html(city, all_cities):
   </div>
 
   <!-- Shared Global JS -->
-  <script src="/assets/js/main.js?v=2.3"></script>
+  <script src="/assets/js/main.js?v=2.4"></script>
 </body>
 </html>
 """

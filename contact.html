@@ -299,33 +299,39 @@
               See how Leads365 captures inquiries from Meta, Google, IndiaMART & Justdial in under 3 seconds, eliminates lead theft, and boosts your telecaller talk time by 300%. No credit card required.
             </p>
 
-            <form id="demo-request-form" onsubmit="handleDemoFormSubmit(event)">
+            <form id="demo-request-form" action="https://api.web3forms.com/submit" method="POST" onsubmit="handleDemoFormSubmit(event)">
+              <!-- Web3Forms Access Key & Configuration -->
+              <input type="hidden" name="access_key" value="102b7968-4c56-4351-b971-69ce20bcdcfc" />
+              <input type="hidden" name="subject" value="New Leads365 CRM Demo Request" />
+              <input type="hidden" name="from_name" value="Leads365 CRM Website" />
+              <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
+
               <div class="form-row">
                 <div class="form-group">
                   <label class="form-label">Full Name *</label>
-                  <input type="text" id="form-name" required placeholder="e.g. Vikram Rathore" class="form-control" />
+                  <input type="text" id="form-name" name="name" required placeholder="e.g. Vikram Rathore" class="form-control" />
                 </div>
                 <div class="form-group">
                   <label class="form-label">Business / Firm Name *</label>
-                  <input type="text" id="form-business" required placeholder="e.g. Royal Living Developers Jaipur" class="form-control" />
+                  <input type="text" id="form-business" name="business" required placeholder="e.g. Royal Living Developers Jaipur" class="form-control" />
                 </div>
               </div>
 
               <div class="form-row">
                 <div class="form-group">
                   <label class="form-label">Mobile Number (WhatsApp Enabled) *</label>
-                  <input type="tel" id="form-phone" required placeholder="+91 98765 43210" class="form-control" />
+                  <input type="tel" id="form-phone" name="phone" required placeholder="+91 98765 43210" class="form-control" />
                 </div>
                 <div class="form-group">
                   <label class="form-label">Official Work Email Address *</label>
-                  <input type="email" id="form-email" required placeholder="vikram@company.com" class="form-control" />
+                  <input type="email" id="form-email" name="email" required placeholder="vikram@company.com" class="form-control" />
                 </div>
               </div>
 
               <div class="form-row">
                 <div class="form-group">
                   <label class="form-label">Active Inside Sales / Telecaller Team Size *</label>
-                  <select id="form-team" class="form-control" required>
+                  <select id="form-team" name="team_size" class="form-control" required>
                     <option value="1–5 Telecallers">1–5 Telecallers (Starter)</option>
                     <option value="6–15 Telecallers" selected>6–15 Telecallers (Growth Plan)</option>
                     <option value="16–50 Telecallers">16–50 Telecallers (Scale)</option>
@@ -334,7 +340,7 @@
                 </div>
                 <div class="form-group">
                   <label class="form-label">Primary Industry Vertical *</label>
-                  <select id="form-industry" class="form-control" required>
+                  <select id="form-industry" name="industry" class="form-control" required>
                     <option value="Real Estate & Property Developers">Real Estate & Property Developers</option>
                     <option value="Education, Colleges & Coaching Institutes">Education, Colleges & Coaching</option>
                     <option value="Finance, Personal Loans & Insurance DSA">Finance, Loans & Insurance DSA</option>
@@ -374,7 +380,7 @@
 
               <div class="form-group">
                 <label class="form-label">Current Biggest Sales Bottleneck / Specific Question</label>
-                <textarea id="form-message" rows="3" placeholder="Tell us about missed callbacks, lead leakage, manual Excel tracking, or your preferred time for a 15-minute Google Meet / Zoom..." class="form-control"></textarea>
+                <textarea id="form-message" name="message" rows="3" placeholder="Tell us about missed callbacks, lead leakage, manual Excel tracking, or your preferred time for a 15-minute Google Meet / Zoom..." class="form-control"></textarea>
               </div>
 
               <button type="submit" class="btn btn-primary w-full btn-lg" style="margin-top: 0.5rem;">
@@ -859,6 +865,6 @@
   </div>
 
   <!-- Shared Global JS -->
-  <script src="assets/js/main.js?v=2.3"></script>
+  <script src="assets/js/main.js?v=2.4"></script>
 </body>
 </html>
