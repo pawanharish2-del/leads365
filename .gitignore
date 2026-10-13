@@ -17,3 +17,9 @@ yarn-error.log*
 
 # Node modules (if added in the future)
 node_modules/
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
