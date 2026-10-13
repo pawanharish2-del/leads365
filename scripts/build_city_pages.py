@@ -1,6 +1,28 @@
 import os
 import re
 
+GTM_HEAD_SNIPPET = """  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WX3XJT56');</script>
+  <!-- End Google Tag Manager -->
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6HLFBEL8DG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-6HLFBEL8DG');
+  </script>"""
+
+GTM_BODY_SNIPPET = """  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WX3XJT56"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->"""
+
 CITIES_DATA = [
     # --- RAJASTHAN (20 CITIES) ---
     {
@@ -1204,6 +1226,7 @@ def generate_city_html(city, all_cities):
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
+{GTM_HEAD_SNIPPET}
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
@@ -1392,6 +1415,7 @@ def generate_city_html(city, all_cities):
   </script>
 </head>
 <body>
+{GTM_BODY_SNIPPET}
 
   <!-- =====================================================================
        1. TOP ANNOUNCEMENT BAR

@@ -1,6 +1,12 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/(google[0-9a-fA-F]+\\.html)",
+      "destination": "/$1"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

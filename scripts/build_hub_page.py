@@ -1,7 +1,7 @@
 import os
 import re
 import json
-from build_city_pages import CITIES_DATA
+from build_city_pages import CITIES_DATA, GTM_HEAD_SNIPPET, GTM_BODY_SNIPPET
 
 def count_visible_words(html_text: str) -> int:
     text = re.sub(r'<script.*?</script>', ' ', html_text, flags=re.DOTALL | re.IGNORECASE)
@@ -90,6 +90,7 @@ def build_hub_page():
     hub_html = f'''<!DOCTYPE html>
 <html lang="en">
 <head>
+{GTM_HEAD_SNIPPET}
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lead Management Software Across India | 60+ Cities & Regional Hubs | Leads365</title>
@@ -653,6 +654,7 @@ def build_hub_page():
 </head>
 
 <body>
+{GTM_BODY_SNIPPET}
   <!-- =====================================================================
        1. TOP ANNOUNCEMENT BAR
        ===================================================================== -->

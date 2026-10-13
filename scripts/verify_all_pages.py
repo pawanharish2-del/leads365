@@ -122,6 +122,35 @@ def verify_all():
         if 'contact?city=' in core_content:
             errors.append(f"{cf} still contains legacy contact?city= links")
 
+    # 5. Verify Google Search Console Verification File
+    gsc_file = os.path.join(base_dir, 'googleffaff865656e63b1.html')
+    if not os.path.exists(gsc_file):
+        errors.append("Search Console verification file googleffaff865656e63b1.html is MISSING")
+    else:
+        with open(gsc_file, 'r', encoding='utf-8') as f:
+            gsc_content = f.read().strip()
+        if gsc_content != 'google-site-verification: googleffaff865656e63b1.html':
+            errors.append(f"Search Console verification file content mismatch: {gsc_content}")
+
+    # 6. Verify Google Tag Manager & Google Tag (gtag.js) on EVERY HTML page
+    import glob
+    all_html_files = glob.glob(os.path.join(base_dir, '**', '*.html'), recursive=True)
+    checked_pages = 0
+    for hf in all_html_files:
+        rel_h = os.path.relpath(hf, base_dir)
+        if rel_h == 'googleffaff865656e63b1.html':
+            continue
+        checked_pages += 1
+        with open(hf, 'r', encoding='utf-8') as f:
+            html_code = f.read()
+        if 'GTM-WX3XJT56' not in html_code:
+            errors.append(f"{rel_h} missing GTM-WX3XJT56 script")
+        if 'G-6HLFBEL8DG' not in html_code:
+            errors.append(f"{rel_h} missing G-6HLFBEL8DG gtag")
+        if '<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WX3XJT56"' not in html_code:
+            errors.append(f"{rel_h} missing GTM noscript iframe")
+    print(f"[OK] Google Tags Verified on all {checked_pages} HTML pages!")
+
     print("\n--- SUMMARY OF VERIFICATION ---")
     if errors:
         print(f"FAILED! Found {len(errors)} issues:")
