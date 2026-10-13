@@ -19,6 +19,7 @@
   --leads-cyan-dark: #007799;
 
   /* Humanized Warm Palette (No harsh #FFF or #000) */
+  --bg-dark: #090E24;
   --bg-surface: #FAFAF7;
   --bg-light: #F4F4EE;
   --bg-subtle: #EBEBE4;
