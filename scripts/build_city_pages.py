@@ -1305,7 +1305,7 @@ def generate_city_html(city, all_cities):
         "@id": "https://leads365.in/#localbusiness-{slug}",
         "name": "Leads365 (Chonexa Technologies) {name} Sales Operations",
         "image": "https://leads365.in{banner}",
-        "telephone": "+91-77919-10007",
+        "telephone": "+91-96105-65551",
         "email": "teamleads365@gmail.com",
         "priceRange": "$$",
         "address": {{
@@ -1422,9 +1422,9 @@ def generate_city_html(city, all_cities):
   <div class="top-bar">
     <div class="container top-bar-inner">
       <div class="top-bar-contact">
-        <a href="tel:+917791910007" class="top-bar-link">
+        <a href="tel:+919610565551" class="top-bar-link">
           <svg width="15" height="15" fill="none" stroke="var(--leads-cyan)" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-          <span>Direct Helpline: <strong>+91 77919 10007</strong></span>
+          <span>Direct Helpline: <strong>+91 96105 65551</strong></span>
         </a>
         <span>|</span>
         <a href="mailto:teamleads365@gmail.com" class="top-bar-link">
@@ -1528,9 +1528,9 @@ def generate_city_html(city, all_cities):
               <span>Book a 15-Min Live Demo</span>
               <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
             </a>
-            <a href="tel:+917791910007" class="btn btn-secondary btn-lg call-sign-anim">
+            <a href="tel:+919610565551" class="btn btn-secondary btn-lg call-sign-anim">
               <svg width="18" height="18" fill="none" stroke="var(--leads-violet)" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-              <span>Call Sales Specialist: +91 77919 10007</span>
+              <span>Call Sales Specialist: +91 96105 65551</span>
             </a>
           </div>
 
@@ -1979,7 +1979,7 @@ def generate_city_html(city, all_cities):
             How do we schedule a customized live demo for our {name} sales directors?
           </summary>
           <div style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.7; margin-top: 0.75rem;">
-            Call or WhatsApp our solutions desk directly on <a href="tel:+917791910007" style="color: var(--leads-violet); font-weight: 700;">+91 77919 10007</a> or schedule a session through our <a href="/contact" style="color: var(--leads-cyan-dark); font-weight: 600;">Contact Form</a>. We will prepare a live demo tailored to your campaigns and industry.
+            Call or WhatsApp our solutions desk directly on <a href="tel:+919610565551" style="color: var(--leads-violet); font-weight: 700;">+91 96105 65551</a> or schedule a session through our <a href="/contact" style="color: var(--leads-cyan-dark); font-weight: 600;">Contact Form</a>. We will prepare a live demo tailored to your campaigns and industry.
           </div>
         </details>
 
@@ -2024,7 +2024,7 @@ def generate_city_html(city, all_cities):
         </p>
         <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
           <a href="/contact" class="btn btn-primary btn-lg">Schedule a Free Demo</a>
-          <a href="tel:+917791910007" class="btn btn-outline-white btn-lg">Call Sales: +91 77919 10007</a>
+          <a href="tel:+919610565551" class="btn btn-outline-white btn-lg">Call Sales: +91 96105 65551</a>
         </div>
       </div>
     </div>
@@ -2084,7 +2084,7 @@ def generate_city_html(city, all_cities):
             </div>
             <div class="footer-contact-item">
               <span>📞</span>
-              <a href="tel:+917791910007">+91 77919 10007</a>
+              <a href="tel:+919610565551">+91 96105 65551</a>
             </div>
             <div class="footer-contact-item">
               <span>✉️</span>
@@ -2108,7 +2108,7 @@ def generate_city_html(city, all_cities):
   </footer>
 
   <!-- Floating Quick WhatsApp & Call Buttons -->
-  <a href="https://wa.me/917791910007?text=Hi%20Leads365%20Team,%20I%20would%20like%20to%20schedule%20a%20CRM%20demo%20for%20our%20{name}%20sales%20team." target="_blank" rel="noopener" class="floating-whatsapp-btn" aria-label="Chat on WhatsApp with CRM Team">
+  <a href="https://wa.me/919610565551?text=Hi%20Leads365%20Team,%20I%20would%20like%20to%20schedule%20a%20CRM%20demo%20for%20our%20{name}%20sales%20team." target="_blank" rel="noopener" class="floating-whatsapp-btn" aria-label="Chat on WhatsApp with CRM Team">
     <div class="whatsapp-btn-pulse"></div>
     <span class="whatsapp-icon-wrap">
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
@@ -2118,7 +2118,7 @@ def generate_city_html(city, all_cities):
     </span>
   </a>
 
-  <a href="tel:+917791910007" class="floating-call-btn" aria-label="Call Leads365 Sales Specialist">
+  <a href="tel:+919610565551" class="floating-call-btn" aria-label="Call Leads365 Sales Specialist">
     <div class="call-btn-pulse"></div>
     <span class="call-icon-wrap">
       <svg viewBox="0 0 24 24" fill="none" stroke="#00E5FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -2141,7 +2141,7 @@ def generate_city_html(city, all_cities):
       <form onsubmit="handleLoginSubmit(event)">
         <div class="form-group">
           <label class="form-label">Registered Mobile or Email</label>
-          <input type="text" required placeholder="e.g. +91 77919 10007 or teamleads365@gmail.com" class="form-control" />
+          <input type="text" required placeholder="e.g. +91 96105 65551 or teamleads365@gmail.com" class="form-control" />
         </div>
         <div class="form-group">
           <label class="form-label">Password</label>

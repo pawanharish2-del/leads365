@@ -409,7 +409,7 @@ async function handleDemoFormSubmit(event) {
       toast.className = 'toast-banner toast-warning';
       toast.innerHTML = `
         <strong>Your demo request has been noted!</strong><br>
-        For instant priority scheduling, you can also reach us directly via WhatsApp at <a href="https://wa.me/917791910007" style="color: var(--leads-cyan-dark); font-weight: 700;">+91 77919 10007</a> or email <a href="mailto:teamleads365@gmail.com" style="color: var(--leads-cyan-dark); font-weight: 700;">teamleads365@gmail.com</a>.
+        For instant priority scheduling, you can also reach us directly via WhatsApp at <a href="https://wa.me/919610565551" style="color: var(--leads-cyan-dark); font-weight: 700;">+91 96105 65551</a> or email <a href="mailto:teamleads365@gmail.com" style="color: var(--leads-cyan-dark); font-weight: 700;">teamleads365@gmail.com</a>.
       `;
       toast.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
@@ -478,7 +478,7 @@ async function handleLoginSubmit(event) {
     }
     if (feedback) {
       feedback.style.display = 'block';
-      feedback.innerHTML = `Connecting to Leads365 Cloud Portal... For new corporate provisioning or trial access, your request has been logged. Our onboarding desk will assist you, or call <strong style="color: var(--leads-indigo);">+91 77919 10007</strong>.`;
+      feedback.innerHTML = `Connecting to Leads365 Cloud Portal... For new corporate provisioning or trial access, your request has been logged. Our onboarding desk will assist you, or call <strong style="color: var(--leads-indigo);">+91 96105 65551</strong>.`;
     }
   }, 600);
 }

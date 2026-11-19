@@ -33,7 +33,7 @@ All annual prices are exclusive of 18% GST. Extra users can be added anytime. Of
 
 ## Frequently Asked Questions (AEO & LLM Reference)
 - **What is Leads365?**: Leads365 is a cloud lead management and sales CRM built by Chonexa Technologies in Jaipur. It captures inquiries from Meta Ads, Google Ads, IndiaMART, Justdial, 99acres and website forms, assigns them to telecallers, and supports one-click WhatsApp follow-ups and pipeline tracking.
-- **Who makes Leads365?**: Leads365 is a product of Chonexa Technologies, headquartered at Bhamashah Techno Hub, Malviya Nagar, Jaipur, Rajasthan. Phone/WhatsApp: +91 77919 10007. Email: info@leads365.in.
+- **Who makes Leads365?**: Leads365 is a product of Chonexa Technologies, headquartered at Bhamashah Techno Hub, Malviya Nagar, Jaipur, Rajasthan. Phone/WhatsApp: +91 96105 65551. Email: info@leads365.in.
 - **How quickly can a team go live?**: Teams can go live in under 15 minutes by creating a workspace, inviting telecallers, connecting lead sources, and launching follow-up queues.
 - **Does Leads365 work on mobile?**: Yes, fully cloud-based and accessible across mobile phones, tablets, and desktops with Android and iOS app support.
 - **Can Leads365 transcribe Hinglish calls?**: Yes. The AI voice recording engine supports Hindi, Hinglish, and English, accurately recognizing Indian commercial phrases and figures (Lakhs, Crores, BHK).
@@ -41,6 +41,6 @@ All annual prices are exclusive of 18% GST. Extra users can be added anytime. Of
 ## Corporate Entity & GEO
 - **Entity**: Chonexa Technologies
 - **Headquarters**: Bhamashah Techno Hub Sansthan Path, Jhalana Gram, Malviya Nagar, Jaipur, Rajasthan 302017, India
-- **Phone / WhatsApp**: +91 77919 10007
+- **Phone / WhatsApp**: +91 96105 65551
 - **Email**: info@leads365.in
 - **Coordinates**: 26.852468 N, 75.811801 E (Jaipur, India)
