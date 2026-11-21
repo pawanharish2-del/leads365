@@ -299,7 +299,7 @@
               See how Leads365 captures inquiries from Meta, Google, IndiaMART & Justdial in under 3 seconds, eliminates lead theft, and boosts your telecaller talk time by 300%. No credit card required.
             </p>
 
-            <form id="demo-request-form" action="https://api.web3forms.com/submit" method="POST" onsubmit="handleDemoFormSubmit(event)">
+            <form id="demo-request-form" data-leads365-form action="https://api.web3forms.com/submit" method="POST" onsubmit="handleDemoFormSubmit(event)">
               <!-- Web3Forms Access Key & Configuration -->
               <input type="hidden" name="access_key" value="102b7968-4c56-4351-b971-69ce20bcdcfc" />
               <input type="hidden" name="subject" value="New Leads365 CRM Demo Request" />
@@ -866,5 +866,8 @@
 
   <!-- Shared Global JS -->
   <script src="assets/js/main.js?v=2.4"></script>
+
+  <!-- Leads365 Universal Form SDK -->
+  <script src="https://leadmanagementsystem-hdtp.onrender.com/api/integrations/snippet.js" data-site-key="lf_site_d70c8072ca026f241e0f3493487aa879" async defer></script>
 </body>
 </html>
