@@ -312,31 +312,32 @@ const CRM_WEBHOOK_KEY = 'lf_live_6ce6a8d2e53eaf7e42667b9da28fe93dc5b04fced2919c6
 
 /**
  * Non-blocking CRM Webhook Dispatcher
- * Sends lead directly to Leads365 CRM API with error-safety and a 5-second timeout.
- * Failure/slowness of the CRM server will never disrupt user experience or email delivery.
+ * Sends lead to CRM with clean single-encoded JSON, safe response parsing, and a 20s timeout.
+ * Cold-starts on Render or network delays will NEVER freeze or block the user interface.
  */
 async function sendLeadToCrmWebhook(leadData) {
-  try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 5000);
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 20000); // 20s timeout for Render cold starts
 
+  try {
+    // 1. Construct clean, plain JavaScript object (strictly single-encoded JSON)
     const crmPayload = {
-      name: leadData.name,
-      phone: leadData.phone,
-      email: leadData.email || '',
-      company: leadData.business,
-      business_name: leadData.business,
-      message: leadData.message || '',
+      name: String(leadData.name || '').trim(),
+      phone: String(leadData.phone || '').trim(),
+      email: String(leadData.email || '').trim(),
+      company: String(leadData.business || '').trim(),
+      business_name: String(leadData.business || '').trim(),
+      message: String(leadData.message || '').trim(),
       source: 'Website Demo Form',
-      landingPage: leadData.sourceUrl,
-      page_url: leadData.sourceUrl,
+      landingPage: String(leadData.sourceUrl || window.location.href),
+      page_url: String(leadData.sourceUrl || window.location.href),
       customFields: {
-        business_firm: leadData.business,
-        sales_team_size: leadData.team,
-        industry_vertical: leadData.industry,
-        current_lead_channels: leadData.checkedSources,
-        sales_bottleneck_question: leadData.message,
-        submission_time: leadData.submissionTime
+        business_firm: String(leadData.business || '').trim(),
+        sales_team_size: String(leadData.team || '').trim(),
+        industry_vertical: String(leadData.industry || '').trim(),
+        current_lead_channels: String(leadData.checkedSources || 'None selected').trim(),
+        sales_bottleneck_question: String(leadData.message || '').trim(),
+        submission_time: String(leadData.submissionTime || '').trim()
       }
     };
 
@@ -354,17 +355,32 @@ async function sendLeadToCrmWebhook(leadData) {
     });
 
     clearTimeout(timeoutId);
-    const result = await response.json().catch(() => null);
-    if (!response.ok) {
-      console.warn('CRM Webhook non-200 response:', response.status, result);
-    } else {
-      console.log('CRM Webhook delivered successfully:', result);
+
+    // 2. Safe response reading: Read raw text first to avoid uncaught JSON parse crashes
+    const rawText = await response.text();
+    let result = null;
+    try {
+      result = rawText ? JSON.parse(rawText) : null;
+    } catch (parseErr) {
+      console.warn(`[CRM Webhook] Warning: Server response was not valid JSON (HTTP ${response.status}):`, rawText);
     }
-    return { success: response.ok, result };
+
+    if (!response.ok) {
+      const errorMsg = (result && (result.error || result.message)) || rawText || `HTTP ${response.status}`;
+      console.warn(`[CRM Webhook] Server responded with HTTP ${response.status}:`, errorMsg, result);
+      return { success: false, status: response.status, error: errorMsg, result };
+    }
+
+    console.log(`[CRM Webhook] Lead successfully delivered to CRM (HTTP ${response.status}):`, result);
+    return { success: true, status: response.status, result };
   } catch (error) {
-    // Non-blocking: Catch errors safely so form submission never breaks
-    console.warn('CRM Webhook delivery error (non-blocking):', error.message || error);
-    return { success: false, error };
+    clearTimeout(timeoutId);
+    if (error.name === 'AbortError') {
+      console.warn('[CRM Webhook] Request timed out after 20 seconds (Render cold start or slow network). Aborted non-blocking.');
+    } else {
+      console.warn('[CRM Webhook] Delivery error (non-blocking):', error.message || error);
+    }
+    return { success: false, error: error.message || error };
   }
 }
 
@@ -412,8 +428,27 @@ async function handleDemoFormSubmit(event) {
 
   const submissionTime = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
 
+  // Extract clean structured lead data
+  const leadData = {
+    name,
+    business,
+    phone,
+    email,
+    team,
+    industry,
+    message,
+    checkedSources: checkedSources.join(', ') || 'None selected',
+    sourceUrl: window.location.href,
+    submissionTime
+  };
+
+  // 1. NON-BLOCKING CRM DISPATCH: Fire CRM webhook in background with 20s timeout (Render cold-start safe)
+  sendLeadToCrmWebhook(leadData).catch(err => {
+    console.warn('[CRM Webhook] Background dispatch caught error:', err);
+  });
+
+  // 2. FAST UX + EMAIL FIRST: Await Web3Forms email notification for instant UI feedback
   try {
-    // 1. Email Payload for Web3Forms Notification
     const payload = {
       access_key: WEB3FORMS_ACCESS_KEY,
       subject: `New Leads365 Demo Request: ${name} (${business})`,
@@ -424,37 +459,22 @@ async function handleDemoFormSubmit(event) {
       email: email || 'Not provided',
       sales_team_size: team,
       industry_vertical: industry,
-      current_lead_channels: checkedSources.join(', ') || 'None selected',
+      current_lead_channels: leadData.checkedSources,
       sales_bottleneck_question: message || 'None provided',
-      source_url: window.location.href,
+      source_url: leadData.sourceUrl,
       submission_time: submissionTime
     };
 
-    // 2. Dispatch Email (Web3Forms) and CRM Webhook concurrently
-    const emailPromise = fetch('https://api.web3forms.com/submit', {
+    const response = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
       body: JSON.stringify(payload)
-    }).then(res => res.json());
-
-    const crmPromise = sendLeadToCrmWebhook({
-      name,
-      business,
-      phone,
-      email,
-      team,
-      industry,
-      message,
-      checkedSources: checkedSources.join(', ') || 'None selected',
-      sourceUrl: window.location.href,
-      submissionTime
     });
 
-    // Wait for email response while CRM executes in parallel
-    const [result] = await Promise.all([emailPromise, crmPromise]);
+    const result = await response.json();
 
     if (submitBtn) {
       submitBtn.disabled = false;
